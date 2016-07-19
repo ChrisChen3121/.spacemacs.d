@@ -1,7 +1,6 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-;; TODO: handle yas&company conflict
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -347,13 +346,10 @@ you should place your code here."
     (define-key c++-mode-map [backtab] 'clang-format-buffer)
     (define-key c++-mode-map (kbd "C-c d") 'disaster))
   ;; Bind clang-format-buffer to tab on the c++-mode only:
-  (add-hook 'c++-mode-hook 'clang-config)
-  ;; (setq company-backends-c-mode-common
-  ;;       '((company-c-headers :with company-yasnippet
-  ;;          company-clang :with company-yasnippet
-  ;;          company-dabbrev-code company-gtags company-etags company-keywords :with company-yasnippet
-  ;;          company-files :with company-yasnippet
-  ;;          company-dabbrev :with company-yasnippet)))
+
+  (add-hook 'c++-mode-hook   (lambda ()
+                               (clang-config)
+                               (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8/")))
 
   ;; for python layer
   (add-hook 'anaconda-mode-hook
@@ -376,7 +372,10 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
    (quote
-    ((flycheck-clang-definitions "IB_USE_STD_STRING")
+    ((company-clang-arguments "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/usr/include/c++/4.8")
+     (company-clang-arguments "-I~/github/ag-strategy/ctp/include/")
+     (company-clang-arguments "-I/home/chrischen/github/ag-strategy/ctp/include/")
+     (flycheck-clang-definitions "IB_USE_STD_STRING")
      (company-clang-arguments "-DIB_USE_STD_STRING")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
