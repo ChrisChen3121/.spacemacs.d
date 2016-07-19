@@ -372,9 +372,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
    (quote
-    ((company-clang-arguments "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/usr/include/c++/4.8")
-     (company-clang-arguments "-I~/github/ag-strategy/ctp/include/")
-     (company-clang-arguments "-I/home/chrischen/github/ag-strategy/ctp/include/")
+    ((company-clang-arguments "-I/home/chrischen/github/ag-strategy/ctp/include/")
      (flycheck-clang-definitions "IB_USE_STD_STRING")
      (company-clang-arguments "-DIB_USE_STD_STRING")))))
 (custom-set-faces
