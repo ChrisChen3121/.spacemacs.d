@@ -370,7 +370,8 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
    (quote
-    ((flycheck-clang-definitions "IB_USE_STD_STRING")
+    ((company-clang-arguments "-I/home/chrischen/github/ag-strategy/ctp/include/")
+     (flycheck-clang-definitions "IB_USE_STD_STRING")
      (company-clang-arguments "-DIB_USE_STD_STRING")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
