@@ -1,7 +1,6 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-;; TODO: handle yas&company conflict
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -48,7 +47,7 @@ values."
 
      ;; for development
      (auto-completion :variables
-                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-snippets-in-popup nil
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
                       auto-completion-private-snippets-directory "~/.spacemacs.d/private/snippets/")
@@ -58,7 +57,6 @@ values."
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
      semantic
-     games
      (shell :variables
             shell-default-shell 'eshell
             shell-default-height 30
@@ -74,6 +72,7 @@ values."
 
      markdown
      yaml
+     ;; games
      ;; chinese
 
      ;; private layers
@@ -137,7 +136,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner 'nil
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
@@ -146,7 +145,7 @@ values."
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
    dotspacemacs-startup-recent-list-size 5
    ;; Default major mode of the scratch buffer (default `text-mode')
-   dotspacemacs-scratch-mode 'text-mode
+   dotspacemacs-scratch-mode 'lisp-interaction-mode
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
@@ -347,7 +346,10 @@ you should place your code here."
     (define-key c++-mode-map [backtab] 'clang-format-buffer)
     (define-key c++-mode-map (kbd "C-c d") 'disaster))
   ;; Bind clang-format-buffer to tab on the c++-mode only:
-  (add-hook 'c++-mode-hook 'clang-config)
+
+  (add-hook 'c++-mode-hook   (lambda ()
+                               (clang-config)
+                               (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8/")))
 
   ;; for python layer
   (add-hook 'anaconda-mode-hook
