@@ -374,11 +374,12 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
    (quote
-    ((eval setq flycheck-clang-include-path
+    ((company-clang-arguments "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ylib-cpp/" "-I/home/chrischen/github/ag-strategy/src/quote/")
+     (eval setq flycheck-clang-include-path
            (list
             (expand-file-name "~/github/ag-strategy/ctp/include/")
-            (expand-file-name "~/github/ylib-cpp/")))
-     (company-clang-arguments "-I$HOME/github/ag-strategy/ctp/include/" "-I$HOME/github/ylib-cpp/")
+            (expand-file-name "~/github/ylib-cpp/")
+            (expand-file-name "~/github/ag-strategy/src/quote/")))
      (flycheck-clang-definitions "IB_USE_STD_STRING")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
