@@ -350,7 +350,8 @@ you should place your code here."
 
   (add-hook 'c++-mode-hook   (lambda ()
                                (clang-config)
-                               (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8/")))
+                               (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8.4/")
+                               (add-to-list 'semantic-default-submodes 'global-semantic-idle-local-symbol-highlight-mode)))
 
   ;; for python layer
   (add-hook 'anaconda-mode-hook
@@ -373,11 +374,13 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
    (quote
-    ((flycheck-clang-include-path list "$HOME/github/ag-strategy/ctp/include/" "$HOME/github/ylib-cpp/")
-     (company-clang-arguments "-I$HOME/github/ag-strategy/ctp/include/" "-I$HOME/github/ylib-cpp/")
-
-     (flycheck-clang-definitions "IB_USE_STD_STRING")
-     (company-clang-arguments "-DIB_USE_STD_STRING")))))
+    ((company-clang-arguments "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ylib-cpp/" "-I/home/chrischen/github/ag-strategy/src/quote/")
+     (eval setq flycheck-clang-include-path
+           (list
+            (expand-file-name "~/github/ag-strategy/ctp/include/")
+            (expand-file-name "~/github/ylib-cpp/")
+            (expand-file-name "~/github/ag-strategy/src/quote/")))
+     (flycheck-clang-definitions "IB_USE_STD_STRING")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
