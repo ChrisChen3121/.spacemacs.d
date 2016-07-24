@@ -78,6 +78,7 @@ values."
      ;; private layers
      cc-org
      cc-python
+     cc-puml
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -372,7 +373,9 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
    (quote
-    ((company-clang-arguments "-I/home/chrischen/github/ag-strategy/ctp/include/")
+    ((flycheck-clang-include-path list "$HOME/github/ag-strategy/ctp/include/" "$HOME/github/ylib-cpp/")
+     (company-clang-arguments "-I$HOME/github/ag-strategy/ctp/include/" "-I$HOME/github/ylib-cpp/")
+
      (flycheck-clang-definitions "IB_USE_STD_STRING")
      (company-clang-arguments "-DIB_USE_STD_STRING")))))
 (custom-set-faces

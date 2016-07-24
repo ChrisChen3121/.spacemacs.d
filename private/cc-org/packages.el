@@ -11,13 +11,8 @@
 (defconst cc-org-packages
   '(
     graphviz-dot-mode
-    plantuml-mode
     ))
 
 (defun cc-org/init-graphvix-doc-mode ()
   (use-package graphviz-dot-mode
-    :defer t))
-
-(defun plantuml-mode ()
-  (use-package plantuml-mode
     :defer t))
