@@ -23,7 +23,7 @@
       (setq puml-plantuml-jar-path "/home/chrischen/tools/plantuml.jar")
       (add-to-list 'auto-mode-alist '("\\.puml\\'" . puml-mode)))
     :config
-    (add-hook org-mode-hook
+    (add-hook 'org-mode-hook
               (lambda () (add-to-list
                           'org-src-lang-modes '("plantuml" . puml))))
     ))
