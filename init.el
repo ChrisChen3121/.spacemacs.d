@@ -55,7 +55,8 @@ values."
      gtags
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t)
+            c-c++-enable-clang-support t
+            )
      semantic
      (shell :variables
             shell-default-shell 'eshell
@@ -358,7 +359,12 @@ you should place your code here."
   (add-hook 'c++-mode-hook   (lambda ()
                                (clang-config)
                                (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8.4/")
-                               (add-to-list 'semantic-default-submodes 'global-semantic-idle-local-symbol-highlight-mode)))
+                               (add-to-list 'semantic-default-submodes
+                                            'global-semantic-idle-local-symbol-highlight-mode)
+                               (add-to-list 'projectile-other-file-alist '("cc" "h"))
+                               (define-key c++-mode-map (kbd "C-c d") 'disaster)
+                               ;; (setq disaster-cxxflags "-std=c++11")
+                               ))
 
   ;; for python layer
   (add-hook 'anaconda-mode-hook
@@ -382,17 +388,4 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(safe-local-variable-values
-   (quote
-    ((eval setq flycheck-clang-include-path
-           (list
-            (expand-file-name "~/github/ag-strategy/ctp/include/")
-            (expand-file-name "~/github/ag-strategy/src/interface/")
-            (expand-file-name "~/github/ylib-cpp/")
-            (expand-file-name "~/github/ag-strategy/src/quote/")))
-     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/" "-I/home/chrischen/github/ylib-cpp/" "-I/home/chrischen/github/ag-strategy/src/quote/")))))
+
