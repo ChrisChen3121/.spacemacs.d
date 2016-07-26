@@ -21,12 +21,11 @@
     :init
     (progn
       (setq puml-plantuml-jar-path "/home/chrischen/tools/plantuml.jar")
+      (add-hook 'org-mode-hook
+                (lambda () (add-to-list
+                            'org-src-lang-modes '("plantuml" . t))))
       (add-to-list 'auto-mode-alist '("\\.puml\\'" . puml-mode)))
     :config
-    (add-hook org-mode-hook
-              (lambda () (add-to-list
-                          'org-src-lang-modes '("plantuml" . puml))))
-    ))
-
+    (puml-set-output-type "png")))
 
 ;;; packages.el ends here

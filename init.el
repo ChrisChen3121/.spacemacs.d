@@ -80,6 +80,7 @@ values."
      cc-org
      cc-python
      cc-puml
+     cc-c++
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -343,9 +344,15 @@ you should place your code here."
   ;; for c++ layer
   ;; Bind clang-format-region to S-tab in all modes:
   (defun clang-config ()
-    (setq clang-format-style "Google")
+    (setq company-async-timeout 5)
+    ;; (setq company-backends-c-mode-common '((company-c-headers
+    ;;                                         company-gtags
+    ;;                                         company-dabbrev :with company-yasnippet)))
+    (setq company-clang-arguments '("-std=c++11"))
     (setq flycheck-clang-language-standard "c++11")
-    (define-key c++-mode-map [backtab] 'clang-format-buffer))
+    (setq clang-format-style "Google")
+    (define-key c++-mode-map [backtab] 'clang-format-buffer)
+    (define-key c++-mode-map (kbd "C-c d") 'disaster))
   ;; Bind clang-format-buffer to tab on the c++-mode only:
 
   (add-hook 'c++-mode-hook   (lambda ()
@@ -372,34 +379,7 @@ you should place your code here."
 ;;=====================================================================
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(safe-local-variable-values
-   (quote
-    ((eval setq flycheck-clang-include-path
-           (list
-            (expand-file-name "~/github/ag-strategy/ctp/include/")
-            (expand-file-name "~/github/ag-strategy/src/interface/")
-            (expand-file-name "~/github/ylib-cpp/")
-            (expand-file-name "~/github/ag-strategy/src/quote/")))
-     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/" "-I/home/chrischen/github/ylib-cpp/" "-I/home/chrischen/github/ag-strategy/src/quote/")
-     (eval setq flycheck-clang-include-path
-           (list
-            (expand-file-name "~/github/ag-strategy/ctp/include/")
-            (expand-file-name "~/github/ag-strategy/src")
-            (expand-file-name "~/github/ylib-cpp/")
-            (expand-file-name "~/github/ag-strategy/src/quote/")))
-     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src" "-I/home/chrischen/github/ylib-cpp/" "-I/home/chrischen/github/ag-strategy/src/quote/")
-     (company-clang-arguments "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ylib-cpp/" "-I/home/chrischen/github/ag-strategy/src/quote/")
-     (eval setq flycheck-clang-include-path
-           (list
-            (expand-file-name "~/github/ag-strategy/ctp/include/")
-            (expand-file-name "~/github/ylib-cpp/")
-            (expand-file-name "~/github/ag-strategy/src/quote/")))
-     (flycheck-clang-definitions "IB_USE_STD_STRING")))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
