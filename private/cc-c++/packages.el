@@ -18,11 +18,12 @@
 (defun cc-c++/init-google-c-style ()
   (use-package google-c-style
     :defer t
-    :config
-    (add-hook 'c-mode-common-hook
+    :init
+    (add-hook 'c++-mode-hook
               (lambda ()
                 (google-set-c-style)
                 (google-make-newline-indent)))))
+
 
 ;; (when (configuration-layer/layer-usedp 'auto-completion)
 ;;   (defun cc-c++/post-init-company ()
