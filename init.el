@@ -80,6 +80,7 @@ values."
      cc-python
      cc-puml
      cc-c++
+     cc-protobuf
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -388,10 +389,10 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
    (quote
-    ((company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src" "-I/home/chrischen/github/ylib-cpp/" "-I/home/chrischen/github/ag-strategy/src/quote/")
-     (eval setq flycheck-clang-include-path
+    ((eval setq flycheck-clang-include-path
            (list
             (expand-file-name "~/github/ag-strategy/ctp/include/")
-            (expand-file-name "~/github/ag-strategy/src")
+            (expand-file-name "~/github/ag-strategy/src/interface/")
             (expand-file-name "~/github/ylib-cpp/")
-            (expand-file-name "~/github/ag-strategy/src/quote/")))))))
+            (expand-file-name "~/github/ag-strategy/src/quote/")))
+     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/" "-I/home/chrischen/github/ylib-cpp/" "-I/home/chrischen/github/ag-strategy/src/quote/")))))
