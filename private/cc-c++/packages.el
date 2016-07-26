@@ -22,8 +22,11 @@
     (add-hook 'c++-mode-hook
               (lambda ()
                 (google-set-c-style)
-                (google-make-newline-indent)))))
-
+                (google-make-newline-indent)
+                (when (configuration-layer/package-usedp 'projectile)
+                  (progn
+                    (add-to-list 'projectile-other-file-alist '("h" "cc"))
+                    (add-to-list 'projectile-other-file-alist '("cc" "h"))))))))
 
 ;; (when (configuration-layer/layer-usedp 'auto-completion)
 ;;   (defun cc-c++/post-init-company ()
