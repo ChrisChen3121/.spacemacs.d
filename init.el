@@ -345,10 +345,10 @@ you should place your code here."
   ;; for c++ layer
   ;; Bind clang-format-region to S-tab in all modes:
   (defun clang-config ()
-    (setq company-async-timeout 5)
     ;; (setq company-backends-c-mode-common '((company-c-headers
-    ;;                                         company-gtags
+    ;;                                         company-semantic
     ;;                                         company-dabbrev :with company-yasnippet)))
+
     (setq company-clang-arguments '("-std=c++11"))
     (setq flycheck-clang-language-standard "c++11")
     (setq clang-format-style "Google")
@@ -359,11 +359,11 @@ you should place your code here."
   (add-hook 'c++-mode-hook   (lambda ()
                                (clang-config)
                                (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8.4/")
-                               (add-to-list 'semantic-default-submodes
-                                            'global-semantic-idle-local-symbol-highlight-mode)
                                (add-to-list 'projectile-other-file-alist '("cc" "h"))
                                (define-key c++-mode-map (kbd "C-c d") 'disaster)
                                ;; (setq disaster-cxxflags "-std=c++11")
+                               ;; (semantic-add-system-include "/usr/local/include" 'c++-mode)
+                               ;; (semantic-add-system-include "/usr/include/c++/4.8.4/" 'c++-mode)
                                ))
 
   ;; for python layer
@@ -374,8 +374,7 @@ you should place your code here."
               (define-key anaconda-mode-map (kbd "C-c r d") 'anaconda-mode-show-doc)
               (define-key anaconda-mode-map (kbd "C-c r f") 'anaconda-mode-find-definitions)
               (define-key anaconda-mode-map (kbd "C-c r r") 'anaconda-mode-find-references)
-              (define-key anaconda-mode-map (kbd "C-c r a")	'anaconda-mode-find-assignments)))
-  )
+              (define-key anaconda-mode-map (kbd "C-c r a")	'anaconda-mode-find-assignments))))
 
 ;;=====================================================================
 ;; Do not write anything past this comment. This is where Emacs will
