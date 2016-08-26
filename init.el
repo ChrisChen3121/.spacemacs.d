@@ -48,6 +48,7 @@ values."
      ;; for development
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup nil
+                      auto-completion-return-key-behavior nil
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
                       auto-completion-private-snippets-directory "~/.spacemacs.d/private/snippets/")
@@ -387,7 +388,6 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -402,5 +402,4 @@ you should place your code here."
             (expand-file-name "~/github/ylib-cpp/")
             (expand-file-name "~/github/ag-strategy/src/quote/")
             (expand-file-name "~/github/ag-strategy/src/strategy/")))
-     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/" "-I/home/chrischen/github/ylib-cpp/" "-I/home/chrischen/github/ag-strategy/src/quote/" "-I/home/chrischen/github/ag-strategy/src/strategy/")
-     ))))
+     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/" "-I/home/chrischen/github/ylib-cpp/" "-I/home/chrischen/github/ag-strategy/src/quote/" "-I/home/chrischen/github/ag-strategy/src/strategy/")))))
