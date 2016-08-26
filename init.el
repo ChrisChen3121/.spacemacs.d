@@ -49,6 +49,7 @@ values."
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup nil
                       auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'complete
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
                       auto-completion-private-snippets-directory "~/.spacemacs.d/private/snippets/")
