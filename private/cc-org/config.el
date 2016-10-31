@@ -36,3 +36,5 @@
          :components ("note-org" "note-static")
          :author "ChrisChen3121@gmail.com"
          )))
+
+(setq org-agenda-files (quote ("~/Dropbox/Todo")))
