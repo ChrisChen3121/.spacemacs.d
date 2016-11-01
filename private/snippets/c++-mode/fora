@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# contributor: Chris Chen
+# name: for_a
+# key: fora
+# --
+for (${1:auto &}${2:item }: ${3:collection}) {
+    $0
+}
