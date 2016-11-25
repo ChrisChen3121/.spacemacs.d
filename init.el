@@ -30,7 +30,8 @@ values."
    dotspacemacs-ask-for-lazy-installation t
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '("~/.spacemacs.d/private/")
+   ;; dotspacemacs-configuration-layer-path '("~/.spacemacs.d/private/")
+
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
@@ -85,9 +86,8 @@ values."
             ;; shell-enable-smart-eshell t
             ;; shell-protect-eshell-prompt nil
             shell-default-term-shell "/bin/zsh")
-
      (python :variables
-             python-test-runner 'pytest
+             python-test-runner 'nose
              python-enable-yapf-format-on-save t
              py-yapf-options '("--style=google"))
 
@@ -97,7 +97,7 @@ values."
      ;; chinese
 
      ;; private layers
-     cc-org
+     ;; cc-org
      ;; cc-python
      ;; cc-puml
      ;; cc-c++
@@ -189,18 +189,13 @@ values."
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
    ;; Default major mode of the scratch buffer (default `text-mode')
-   dotspacemacs-scratch-mode 'lisp-interaction-mode
+   ;; dotspacemacs-scratch-mode 'lisp-interaction-mode
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(monokai
                          spacemacs-dark
-                         occidental
-                         spacemacs-light
-                         solarized-light
-                         solarized-dark
-                         leuven
-                         zenburn)
+                         spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -212,15 +207,16 @@ values."
                                :powerline-scale 1.1
                                )
    ;; The leader key
-   dotspacemacs-leader-key "SPC"
+   ;; dotspacemacs-leader-key "SPC"
    ;; The key used for Vim Ex commands (default ":")
-   dotspacemacs-ex-command-key ":"
+   ;; dotspacemacs-ex-command-key ":"
+
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
    dotspacemacs-emacs-leader-key "M-m"
    ;; Major mode leader key is a shortcut key which is the equivalent of
    ;; pressing `<leader> m`. Set it to `nil` to disable it. (default ",")
-   dotspacemacs-major-mode-leader-key ","
+   dotspacemacs-major-mode-leader-key nil
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
    ;; (default "C-M-m)
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
@@ -228,7 +224,7 @@ values."
    ;; the key pairs C-i, TAB and C-m, RET.
    ;; Setting it to a non-nil value, allows for separate commands under <C-i>
    ;; and TAB or <C-m> and RET.
-   ;; In the terminal, these pairs are generally indistinguishable, so this only
+   ;; in the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
 
@@ -456,5 +452,36 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "a800120841da457aa2f86b98fb9fd8df8ba682cebde033d7dbf8077c1b7d677a" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
+ '(evil-want-Y-yank-to-eol t)
+ '(safe-local-variable-values
+   (quote
+    ((eval setq flycheck-clang-include-path
+           (list
+            (expand-file-name "~/github/ag-strategy/ctp/include/")
+            (expand-file-name "~/github/ag-strategy/src/interface/include/")
+            (expand-file-name "~/github/ag-strategy/src/ctp_trade/")
+            (expand-file-name "~/github/ag-strategy/src/ctp_trade/Debug/")))
+     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/include/" "-I/home/chrischen/github/ag-strategy/src/ctp_trade/" "-I/home/chrischen/github/ag-strategy/src/ctp_trade/Debug/")
+     (eval setq flycheck-clang-include-path
+           (list
+            (expand-file-name "~/github/ag-strategy/ctp/include/")
+            (expand-file-name "~/github/ag-strategy/src/interface/include/")
+            (expand-file-name "~/github/ag-strategy/src/strategy/")
+            (expand-file-name "~/github/ag-strategy/src/strategy/Debug/")))
+     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/include/" "-I/home/chrischen/github/ag-strategy/src/strategy/" "-I/home/chrischen/github/ag-strategy/src/strategy/Debug/")
+     (eval setq flycheck-clang-include-path
+           (list
+            (expand-file-name "~/github/ag-strategy/ctp/include/")
+            (expand-file-name "~/github/ag-strategy/src/interface/include/")
+            (expand-file-name "~/github/ag-strategy/src/ctp_quote/")
+            (expand-file-name "~/github/ag-strategy/src/ctp_quote/Debug/")))
+     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/include/" "-I/home/chrischen/github/ag-strategy/src/ctp_quote/" "-I/home/chrischen/github/ag-strategy/src/ctp_quote/Debug/")))))
