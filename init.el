@@ -185,7 +185,7 @@ values."
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists '((recents . 5)
                                 (projects . 7)
-                                (bookmark . 5))
+                                (bookmarks . 5))
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
    ;; Default major mode of the scratch buffer (default `text-mode')
@@ -207,9 +207,10 @@ values."
                                :powerline-scale 1.1
                                )
    ;; The leader key
-   ;; dotspacemacs-leader-key "SPC"
+   dotspacemacs-leader-key "SPC"
    ;; The key used for Vim Ex commands (default ":")
-   ;; dotspacemacs-ex-command-key ":"
+   dotspacemacs-ex-command-key ":"
+   dotspacemacs-emacs-command-key ":"
 
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
@@ -268,8 +269,6 @@ values."
    ;; `find-files' (SPC f f), `find-spacemacs-file' (SPC f e s), and
    ;; `find-contrib-file' (SPC f e c) are replaced. (default nil)
    dotspacemacs-use-ido nil
-   ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
-   dotspacemacs-helm-resize nil
    ;; if non nil, the helm header is hidden when there is only one source.
    ;; (default nil)
    dotspacemacs-helm-no-header nil
@@ -330,7 +329,7 @@ values."
    dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'origami ;TODO: need to check
+   dotspacemacs-folding-method 'origami ;TODO: need to set shortcut
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
