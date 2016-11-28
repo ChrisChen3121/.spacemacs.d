@@ -78,7 +78,7 @@ values."
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t
             )
-     semantic
+     semantic ;; for lisp srefactor support
      (shell :variables
             shell-default-shell 'eshell
             shell-default-height 30
