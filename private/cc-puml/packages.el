@@ -20,7 +20,7 @@
     :defer t
     :init
     (progn
-      (setq puml-plantuml-jar-path "/home/chrischen/tools/plantuml.jar")
+      (setq puml-plantuml-jar-path "~/tools/plantuml.jar")
       (add-hook 'org-mode-hook
                 (lambda () (add-to-list
                             'org-src-lang-modes '("plantuml" . t)))))

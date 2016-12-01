@@ -14,7 +14,6 @@
     google-c-style
     company
     semantic
-    clang-format
     ))
 
 (defun cc-c++/init-google-c-style ()
@@ -54,24 +53,5 @@
       :init
       (progn (add-to-list 'semantic-default-submodes
                           'global-semantic-idle-local-symbol-highlight-mode)))))
-
-;; (when (configuration-layer/layer-usedp 'c-c++)
-;;   (defun cc-c++/post-init-clang-format ()
-;;     (use-package clang-format
-;;       :if (configuration-layer/package-usedp 'clang-format)
-;;       :defer t
-;;       :init
-;;       (progn
-;;         (setq clang-format-style "Google")))))
-
-
-;; (when (configuration-layer/layer-usedp 'c-c++)
-;;   (defun cc-c++/post-init-c-c++ ()
-;;     (progn
-;;       (setq flycheck-clang-language-standard "c++11")
-;;       (setq clang-format-style "Google")
-;;       (define-key c++-mode-map [backtab] 'clang-format-buffer)
-;;       (define-key c++-mode-map (kbd "C-c d") 'disaster))
-;;      ))))
 
 ;;; packages.el ends here

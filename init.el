@@ -44,36 +44,50 @@ values."
      helm
      better-defaults
      emacs-lisp
-     chrome
      (colors :variables
-             colors-enable-rainbow-identifiers nil
+             colors-colorize-identifiers 'variables
              colors-enable-nyan-cat-progress-bar t)
+     (spell-checking :variables
+                     spell-checking-enable-by-default nil
+                     spell-checking-enable-auto-dictionary t
+                     =enable-flyspell-auto-completion= t)
      syntax-checking
 
      ;; source control
      (git :variables
           git-enable-magit-svn-plugin t
           magit-repository-directories '("~/github/"))
-     github
+     ;; github
 
      ;; org bundle
      (org :variables
-          org-enable-github-support t)
+          ;; org-enable-github-support t
+          org-projectile-file "TODOs.org")
      (deft :variables
        deft-directory "~/Dropbox/notes/")
-     (spell-checking :variables
-                     spell-checking-enable-by-default nil)
 
      ;; for development
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup nil
-                      ;; auto-completion-return-key-behavior nil
-                      ;; auto-completion-tab-key-behavior 'complete
+                      ;; auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.2
                       auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-help-tooltip 'manual ;;M-h to show tooltip
                       auto-completion-private-snippets-directory "~/.spacemacs.d/private/snippets/")
+
+     (plantuml :variables
+               plantuml-jar-path "~/tools/plantuml.jar"
+               ;; org-plantuml-jar-path "~/tools/plantuml.jar"
+               plantuml-output-type "png")
+
+     (gtags :variables
+            gtags-enable-by-default t)
+     markdown
+     yaml
+
      ;;cscope
-     gtags
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t
@@ -82,26 +96,25 @@ values."
      (shell :variables
             shell-default-shell 'eshell
             shell-default-height 30
-            shell-default-position 'bottom
+            shell-default-position 'bottem
             ;; shell-enable-smart-eshell t
             ;; shell-protect-eshell-prompt nil
-            shell-default-term-shell "/bin/zsh")
+            shell-default-term-shell "zsh")
+     shell-scripts
      (python :variables
              python-test-runner 'nose
+             python-auto-set-local-pyenv-version 'on-visit
              python-enable-yapf-format-on-save t
              py-yapf-options '("--style=google"))
 
-     markdown
-     yaml
      ;; games
      ;; chinese
 
      ;; private layers
      ;; cc-org
-     ;; cc-python
-     ;; cc-puml
-     ;; cc-c++
-     ;; cc-protobuf
+     cc-python
+     cc-c++
+     cc-protobuf
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -378,9 +391,10 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq user-mail-address "ChrisChen3121@gmail.com")
-
   (setq dired-recursive-copies 'always)
   (delete-selection-mode 1)
+  ;; (global-company-mode)
+
   (global-set-key (kbd "C-x o") 'switch-window)
   (global-set-key (kbd "C-x C-b") 'buffer-menu-other-window)
   (global-set-key (kbd "C-w") 'whole-line-or-region-kill-region)
@@ -431,6 +445,8 @@ you should place your code here."
                                ;; (semantic-add-system-include "/usr/local/include" 'c++-mode)
                                ;; (semantic-add-system-include "/usr/include/c++/4.8.4/" 'c++-mode)
                                ))
+
+  (add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
 
   ;; for python layer
   (add-hook 'anaconda-mode-hook
