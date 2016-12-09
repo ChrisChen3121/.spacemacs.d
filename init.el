@@ -72,9 +72,9 @@ values."
                       ;; auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.2
+                      auto-completion-complete-with-key-sequence-delay 0.5
                       auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-help-tooltip 'manual ;;M-h to show tooltip
+                      auto-completion-enable-help-tooltip nil
                       auto-completion-private-snippets-directory "~/.spacemacs.d/private/snippets/")
 
      (plantuml :variables
@@ -90,7 +90,7 @@ values."
      ;;cscope
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t
+            ;; c-c++-enable-clang-support t
             )
      semantic ;; for lisp srefactor support
      (shell :variables
@@ -440,18 +440,16 @@ you should place your code here."
                                (clang-config)
                                (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8.4/")
                                (add-to-list 'projectile-other-file-alist '("cc" "h"))
-                               (define-key c++-mode-map (kbd "C-c d") 'disaster)
                                ;; (setq disaster-cxxflags "-std=c++11")
                                ;; (semantic-add-system-include "/usr/local/include" 'c++-mode)
                                ;; (semantic-add-system-include "/usr/include/c++/4.8.4/" 'c++-mode)
                                ))
 
-  (add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
-
   ;; for python layer
   (add-hook 'anaconda-mode-hook
             (lambda ()
               (define-key anaconda-mode-map (kbd "M-,") 'anaconda-mode-go-back)
+              (define-key anaconda-eldoc-mode-hook [backtab] 'yapfify-buffer)
               (define-key anaconda-mode-map (kbd "C-c r b") 'anaconda-mode-go-back)
               (define-key anaconda-mode-map (kbd "C-c r d") 'anaconda-mode-show-doc)
               (define-key anaconda-mode-map (kbd "C-c r f") 'anaconda-mode-find-definitions)

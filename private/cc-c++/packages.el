@@ -13,6 +13,8 @@
   '(
     google-c-style
     company
+    irony
+    company-irony
     semantic
     ))
 
@@ -29,6 +31,18 @@
                     (add-to-list 'projectile-other-file-alist '("h" "cc"))
                     (add-to-list 'projectile-other-file-alist '("cc" "h"))))))))
 
+(defun cc-c++/init-irony ()
+  (use-package irony
+    :defer t
+    :init
+    ()))
+
+(defun cc-c++/init-company-irony ()
+  (use-package company-irony
+    :defer t
+    :init
+    ()))
+
 (when (configuration-layer/layer-usedp 'auto-completion)
   (defun cc-c++/post-init-company ()
     (use-package company
@@ -36,14 +50,17 @@
       :defer t
       :init
       (progn
-        (setq company-async-timeout 5)
+        (setq company-async-timeout 30)
         (setq company-backends-c-mode-common
-              '((company-c-headers
-                 company-semantic
-                 ;; (company-dabbrev-code company-gtags company-etags company-keywords)
-                 company-files
-                 company-dabbrev)))
-        ))))
+              '(company-irony
+                ;; company-clang
+                ;; (company-dabbrev-code company-gtags company-keywords)
+                ;; company-files
+                ;; company-dabbrev
+                ))
+        ))
+
+    ))
 
 (when (configuration-layer/layer-usedp 'semantic)
   (defun cc-c++/post-init-semantic ()
