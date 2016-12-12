@@ -12,54 +12,62 @@
 (defconst cc-c++-packages
   '(
     google-c-style
-    company
     irony
-    company-irony
-    semantic
+    ;;company
+    (company-irony :toggle (configuration-layer/package-usedp 'company))
+    ;;eldoc
+    (irony-eldoc :toggle (configuration-layer/package-usedp 'eldoc))
+    ;;flycheck
+    (flycheck-irony :toggle (configuration-layer/package-usedp 'flycheck))
+    projectile
     ))
 
 (defun cc-c++/init-google-c-style ()
   (use-package google-c-style
     :defer t
     :init
-    (add-hook 'c++-mode-hook
+    (add-hook 'c-mode-common-hook
               (lambda ()
                 (google-set-c-style)
-                (google-make-newline-indent)
-                (when (configuration-layer/package-usedp 'projectile)
-                  (progn
-                    (add-to-list 'projectile-other-file-alist '("h" "cc"))
-                    (add-to-list 'projectile-other-file-alist '("cc" "h"))))))))
+                (google-make-newline-indent)))))
 
 (defun cc-c++/init-irony ()
   (use-package irony
     :defer t
     :init
-    ()))
+    (progn
+      (add-hook 'c-mode-common-hook 'irony-mode)
+      (add-hook 'irony-mode-hook
+                (lambda ()
+                  (irony-cdb-autosetup-compile-options)
+                  (defun generate-compile-options () ()))))))
 
 (defun cc-c++/init-company-irony ()
   (use-package company-irony
+    :if (configuration-layer/package-usedp 'company)
     :defer t
     :init
-    ()))
+    (setq company-backends-c-mode-common
+          '(company-irony-c-headers
+            company-irony
+            (company-dabbrev-code company-gtags company-keywords)
+            company-files
+            company-dabbrev
+            ))))
 
-(when (configuration-layer/layer-usedp 'auto-completion)
-  (defun cc-c++/post-init-company ()
-    (use-package company
-      :if (configuration-layer/package-usedp 'company)
-      :defer t
-      :init
-      (progn
-        (setq company-async-timeout 30)
-        (setq company-backends-c-mode-common
-              '(company-irony
-                ;; company-clang
-                ;; (company-dabbrev-code company-gtags company-keywords)
-                ;; company-files
-                ;; company-dabbrev
-                ))
-        ))
+(defun cc-c++/init-irony-eldoc ()
+  (use-package irony-eldoc
+    :defer t
+    :init
+    (add-hook 'irony-mode-hook 'irony-eldoc)
+    ))
 
+(defun cc-c++/init-flycheck-irony ()
+  (use-package flycheck-irony
+    :if (configuration-layer/package-usedp 'flycheck)
+    :defer t
+    :init
+    (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
     ))
 
 (when (configuration-layer/layer-usedp 'semantic)
@@ -67,8 +75,22 @@
     (use-package semantic
       :if (configuration-layer/package-usedp 'semantic)
       :defer t
-      :init
-      (progn (add-to-list 'semantic-default-submodes
-                          'global-semantic-idle-local-symbol-highlight-mode)))))
+      :post-init
+      (add-to-list 'semantic-default-submodes
+                   'global-semantic-idle-local-symbol-highlight-mode))))
+
+(defun cc-c++/post-init-projectile ()
+  (add-to-list 'projectile-other-file-alist '("h" "cc"))
+  (add-to-list 'projectile-other-file-alist '("cc" "h")))
+
+
+
+
+
+
+
+
+
+
 
 ;;; packages.el ends here

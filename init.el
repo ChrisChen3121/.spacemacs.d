@@ -81,18 +81,17 @@ values."
                plantuml-jar-path "~/tools/plantuml.jar"
                ;; org-plantuml-jar-path "~/tools/plantuml.jar"
                plantuml-output-type "png")
-
      (gtags :variables
             gtags-enable-by-default t)
      markdown
      yaml
 
      ;;cscope
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            ;; c-c++-enable-clang-support t
-            )
-     semantic ;; for lisp srefactor support
+     ;; (c-c++ :variables
+     ;;        ;; c-c++-default-mode-for-headers 'c++-mode
+     ;;        ;; c-c++-enable-clang-support t
+     ;;        )
+     semantic ;; for lisp & c++ srefactor support
      (shell :variables
             shell-default-shell 'eshell
             shell-default-height 30
@@ -113,8 +112,8 @@ values."
      ;; private layers
      ;; cc-org
      cc-python
-     cc-c++
      cc-protobuf
+     cc-c++
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -206,9 +205,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai
-                         spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(spacemacs-light
+                         monokai)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -417,6 +415,7 @@ you should place your code here."
   (which-key-add-key-based-replacements
     "C-c @" "hs-cmds"
     "C-c ," "semantic")
+
   ;; hs cmds
   (global-set-key (kbd "C-c @ t") 'hs-toggle-hiding)
   (global-set-key (kbd "C-c @ s") 'hs-show-all)
@@ -425,20 +424,17 @@ you should place your code here."
   ;; for c++ layer
   ;; Bind clang-format-region to S-tab in all modes:
   (defun clang-config ()
-    ;; (setq company-backends-c-mode-common '((company-c-headers
-    ;;                                         company-semantic
-    ;;                                         company-dabbrev :with company-yasnippet)))
-
-    (setq company-clang-arguments '("-std=c++11"))
+    ;; (setq company-clang-arguments '("-std=c++11"))
     (setq flycheck-clang-language-standard "c++11")
     (setq clang-format-style "Google")
     (define-key c++-mode-map [backtab] 'clang-format-buffer)
-    (define-key c++-mode-map (kbd "C-c d") 'disaster))
+    )
   ;; Bind clang-format-buffer to tab on the c++-mode only:
 
   (add-hook 'c++-mode-hook   (lambda ()
                                (clang-config)
-                               (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8.4/")
+                               (define-key c++-mode-map (kbd "C-c d") 'disaster)
+                               ;; (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8.4/")
                                (add-to-list 'projectile-other-file-alist '("cc" "h"))
                                ;; (setq disaster-cxxflags "-std=c++11")
                                ;; (semantic-add-system-include "/usr/local/include" 'c++-mode)
