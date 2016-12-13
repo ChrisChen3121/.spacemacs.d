@@ -96,11 +96,11 @@ values."
             ;; shell-protect-eshell-prompt nil
             shell-default-term-shell "zsh")
      shell-scripts
-     (python :variables
-             python-test-runner 'nose
-             python-auto-set-local-pyenv-version 'on-visit
-             python-enable-yapf-format-on-save t
-             py-yapf-options '("--style=google"))
+     ;; (python :variables
+     ;;         python-test-runner 'nose
+     ;;         python-auto-set-local-pyenv-version 'on-visit
+     ;;         python-enable-yapf-format-on-save t
+     ;;         py-yapf-options '("--style=google"))
 
      ;; games
      ;; chinese
@@ -430,27 +430,17 @@ you should place your code here."
   ;; development common
   (smartparens-global-mode)
 
-
-  ;; (add-hook 'c++-mode-hook   (lambda ()
-  ;;                              (clang-config)
-  ;;                              (define-key c++-mode-map (kbd "C-c d") 'disaster)
-  ;;                              ;; (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8.4/")
-  ;;                              (add-to-list 'projectile-other-file-alist '("cc" "h"))
-  ;;                              ;; (setq disaster-cxxflags "-std=c++11")
-  ;;                              ;; (semantic-add-system-include "/usr/local/include" 'c++-mode)
-  ;;                              ;; (semantic-add-system-include "/usr/include/c++/4.8.4/" 'c++-mode)
-  ;;                              ))
-
   ;; for python layer
-  (add-hook 'anaconda-mode-hook
-            (lambda ()
-              (define-key anaconda-mode-map (kbd "M-,") 'anaconda-mode-go-back)
-              (define-key anaconda-eldoc-mode-hook [backtab] 'yapfify-buffer)
-              (define-key anaconda-mode-map (kbd "C-c r b") 'anaconda-mode-go-back)
-              (define-key anaconda-mode-map (kbd "C-c r d") 'anaconda-mode-show-doc)
-              (define-key anaconda-mode-map (kbd "C-c r f") 'anaconda-mode-find-definitions)
-              (define-key anaconda-mode-map (kbd "C-c r r") 'anaconda-mode-find-references)
-              (define-key anaconda-mode-map (kbd "C-c r a")	'anaconda-mode-find-assignments))))
+  ;; (add-hook 'anaconda-mode-hook
+  ;;           (lambda ()
+  ;;             (define-key anaconda-mode-map (kbd "M-,") 'anaconda-mode-go-back)
+  ;;             (define-key anaconda-eldoc-mode-hook [backtab] 'yapfify-buffer)
+  ;;             (define-key anaconda-mode-map (kbd "C-c r b") 'anaconda-mode-go-back)
+  ;;             (define-key anaconda-mode-map (kbd "C-c r d") 'anaconda-mode-show-doc)
+  ;;             (define-key anaconda-mode-map (kbd "C-c r f") 'anaconda-mode-find-definitions)
+  ;;             (define-key anaconda-mode-map (kbd "C-c r r") 'anaconda-mode-find-references)
+  ;;             (define-key anaconda-mode-map (kbd "C-c r a")	'anaconda-mode-find-assignments)))
+  )
 
 ;;=====================================================================
 ;; Do not write anything past this comment. This is where Emacs will
