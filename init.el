@@ -462,35 +462,3 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "a800120841da457aa2f86b98fb9fd8df8ba682cebde033d7dbf8077c1b7d677a" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
- '(evil-want-Y-yank-to-eol t)
- '(safe-local-variable-values
-   (quote
-    ((eval setq flycheck-clang-include-path
-           (list
-            (expand-file-name "~/github/ag-strategy/ctp/include/")
-            (expand-file-name "~/github/ag-strategy/src/interface/include/")
-            (expand-file-name "~/github/ag-strategy/src/ctp_trade/")
-            (expand-file-name "~/github/ag-strategy/src/ctp_trade/Debug/")))
-     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/include/" "-I/home/chrischen/github/ag-strategy/src/ctp_trade/" "-I/home/chrischen/github/ag-strategy/src/ctp_trade/Debug/")
-     (eval setq flycheck-clang-include-path
-           (list
-            (expand-file-name "~/github/ag-strategy/ctp/include/")
-            (expand-file-name "~/github/ag-strategy/src/interface/include/")
-            (expand-file-name "~/github/ag-strategy/src/strategy/")
-            (expand-file-name "~/github/ag-strategy/src/strategy/Debug/")))
-     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/include/" "-I/home/chrischen/github/ag-strategy/src/strategy/" "-I/home/chrischen/github/ag-strategy/src/strategy/Debug/")
-     (eval setq flycheck-clang-include-path
-           (list
-            (expand-file-name "~/github/ag-strategy/ctp/include/")
-            (expand-file-name "~/github/ag-strategy/src/interface/include/")
-            (expand-file-name "~/github/ag-strategy/src/ctp_quote/")
-            (expand-file-name "~/github/ag-strategy/src/ctp_quote/Debug/")))
-     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/include/" "-I/home/chrischen/github/ag-strategy/src/ctp_quote/" "-I/home/chrischen/github/ag-strategy/src/ctp_quote/Debug/")))))
