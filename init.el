@@ -87,11 +87,7 @@ values."
      yaml
 
      ;;cscope
-     ;; (c-c++ :variables
-     ;;        ;; c-c++-default-mode-for-headers 'c++-mode
-     ;;        ;; c-c++-enable-clang-support t
-     ;;        )
-     semantic ;; for lisp & c++ srefactor support
+     ;; semantic ;; for lisp & c++ srefactor support
      (shell :variables
             shell-default-shell 'eshell
             shell-default-height 30
@@ -168,7 +164,7 @@ values."
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
    ;; whenever you start Emacs. (default nil)
-   dotspacemacs-check-for-update nil
+   dotspacemacs-check-for-update t
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
    ;; to `emacs-version'.
@@ -402,6 +398,27 @@ you should place your code here."
   ;; need to check: semantic makes scroll-down-command not work
   (global-set-key (kbd "M-v") 'scroll-down)
 
+  ;; set which-key name
+  (which-key-add-key-based-replacements
+    "C-c @" "hs"
+    "C-c ," "semantic"
+    "C-c C-w" "eyebrowse"
+    "C-c C-d" "describe"
+    "C-x ESC" "redo"
+    "C-x RET" "lang env"
+    "C-x 4" "other window"
+    "C-x 5" "other frame"
+    "C-x 8" "special char"
+    "C-x @" "event apply"
+    "C-x a" "abbrev"
+    "C-x n" "narrow"
+    "C-x r" "retangle|register"
+    "C-x X" "edebug"
+    "C-x C-a" "edebug-mode"
+    "C-c !" "flycheck"
+    "C-c p" "projectile"
+    )
+
   ;; for chrome layer
   (setq edit-server-url-major-mode-alist
         '(("github\\.com" . markdown-mode)))
@@ -412,34 +429,17 @@ you should place your code here."
 
   ;; development common
   (smartparens-global-mode)
-  (which-key-add-key-based-replacements
-    "C-c @" "hs-cmds"
-    "C-c ," "semantic")
 
-  ;; hs cmds
-  (global-set-key (kbd "C-c @ t") 'hs-toggle-hiding)
-  (global-set-key (kbd "C-c @ s") 'hs-show-all)
-  (global-set-key (kbd "C-c @ h") 'hs-hide-all)
 
-  ;; for c++ layer
-  ;; Bind clang-format-region to S-tab in all modes:
-  (defun clang-config ()
-    ;; (setq company-clang-arguments '("-std=c++11"))
-    (setq flycheck-clang-language-standard "c++11")
-    (setq clang-format-style "Google")
-    (define-key c++-mode-map [backtab] 'clang-format-buffer)
-    )
-  ;; Bind clang-format-buffer to tab on the c++-mode only:
-
-  (add-hook 'c++-mode-hook   (lambda ()
-                               (clang-config)
-                               (define-key c++-mode-map (kbd "C-c d") 'disaster)
-                               ;; (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8.4/")
-                               (add-to-list 'projectile-other-file-alist '("cc" "h"))
-                               ;; (setq disaster-cxxflags "-std=c++11")
-                               ;; (semantic-add-system-include "/usr/local/include" 'c++-mode)
-                               ;; (semantic-add-system-include "/usr/include/c++/4.8.4/" 'c++-mode)
-                               ))
+  ;; (add-hook 'c++-mode-hook   (lambda ()
+  ;;                              (clang-config)
+  ;;                              (define-key c++-mode-map (kbd "C-c d") 'disaster)
+  ;;                              ;; (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8.4/")
+  ;;                              (add-to-list 'projectile-other-file-alist '("cc" "h"))
+  ;;                              ;; (setq disaster-cxxflags "-std=c++11")
+  ;;                              ;; (semantic-add-system-include "/usr/local/include" 'c++-mode)
+  ;;                              ;; (semantic-add-system-include "/usr/include/c++/4.8.4/" 'c++-mode)
+  ;;                              ))
 
   ;; for python layer
   (add-hook 'anaconda-mode-hook
