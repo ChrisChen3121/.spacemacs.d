@@ -13,6 +13,7 @@
     graphviz-dot-mode
     ))
 
-(defun cc-org/init-graphvix-doc-mode ()
+(defun cc-org/init-graphviz-dot-mode ()
   (use-package graphviz-dot-mode
-    :defer t))
+    :defer t
+    ))

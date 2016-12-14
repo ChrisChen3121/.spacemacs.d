@@ -30,17 +30,22 @@
 (defun cc-c++/init-google-c-style ()
   (use-package google-c-style
     :defer t
-    :config
-    (progn (google-set-c-style)
-           (google-make-newline-indent))))
+    :init
+    (add-hook 'c-mode-common-hook
+              (lambda ()
+                (google-set-c-style)
+                (google-make-newline-indent)))))
 
 (defun cc-c++/init-irony ()
   (use-package irony
     :defer t
-    :init (add-hook 'c-mode-common-hook 'irony-mode)
+    :init
+    (progn
+      (add-hook 'c-mode-common-hook 'irony-mode)
+      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
     :config
     (progn
-      (irony-cdb-autosetup-compile-options)
+      (setq irony-additional-clang-options '("-std=c++11"))
       (defun cc-c++/generate-compile-options ()
         (interactive)
         (start-process-shell-command "generate-compile-options" nil
@@ -111,7 +116,10 @@
                 "C-c i" "irony")
               (define-key c-mode-base-map (kbd "C-c i g") 'cc-c++/generate-compile-options)
               (define-key c-mode-base-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
-              (define-key c-mode-base-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path))
+              (define-key c-mode-base-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path)
+              (define-key dired-mode-map (kbd "C-c i g") 'cc-c++/generate-compile-options)
+              (define-key dired-mode-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
+              (define-key dired-mode-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path))
             ))
 
 ;;; packages.el ends here
