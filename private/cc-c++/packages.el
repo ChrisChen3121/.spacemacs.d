@@ -119,7 +119,6 @@
               (define-key c-mode-base-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path)
               (define-key dired-mode-map (kbd "C-c i g") 'cc-c++/generate-compile-options)
               (define-key dired-mode-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
-              (define-key dired-mode-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path))
-            ))
+              (define-key dired-mode-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path))))
 
 ;;; packages.el ends here

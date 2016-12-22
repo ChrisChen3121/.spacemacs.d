@@ -36,7 +36,6 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -104,7 +103,10 @@ values."
      ;;         py-yapf-options '("--style=google"))
 
      ;; games
-     ;; chinese
+     chinese
+
+     octave
+     html
 
      ;; private layers
      cc-org
@@ -124,11 +126,11 @@ values."
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
    '(
-     gnuplot
-     rainbow-identifiers
-     gist
-     git-flow
-     evil-org-mode
+     ;; gnuplot
+     ;; rainbow-identifiers
+     ;; gist
+     ;; git-flow
+     ;; evil-org-mode
      )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -430,6 +432,7 @@ you should place your code here."
 
   ;; development common
   (smartparens-global-mode)
+  (spacemacs//set-monospaced-font "Monaco" "WenQuanYi Micro Hei" 14 15)
 
   ;; for python layer
   ;; (add-hook 'anaconda-mode-hook
