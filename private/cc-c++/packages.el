@@ -25,6 +25,7 @@
     ggtags
     ;; clang-format
     ;; disaster
+    cmake-ide
     ))
 
 (defun cc-c++/init-google-c-style ()
@@ -87,14 +88,20 @@
     :init
     (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
 
-(defun cc-c++/post-init-projectile ()
-  (add-to-list 'projectile-other-file-alist '("h" "cc"))
-  (add-to-list 'projectile-other-file-alist '("cc" "h")))
+;; (defun cc-c++/post-init-projectile ()
+;;   (add-to-list 'projectile-other-file-alist '("h" "cc"))
+;;   (add-to-list 'projectile-other-file-alist '("cc" "h")))
 
 (defun cc-c++/post-init-ggtags ()
   (which-key-add-key-based-replacements
     "M-m m g" "gtags"
     "M-RET g" "gtags"))
+
+(defun cc-c++/init-cmake-ide ()
+  (use-package cmake-ide
+    :defer t
+    :init
+    (add-hook 'c-mode-common-hook #'cmake-ide-setup)))
 
 ;; (defun cc-c++/post-init-c++-mode ()
 ;;   (when (configuration-layer/package-usedp 'clang-format)
