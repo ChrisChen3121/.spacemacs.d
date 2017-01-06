@@ -432,7 +432,7 @@ you should place your code here."
 
   ;; development common
   (smartparens-global-mode)
-  (spacemacs//set-monospaced-font "Monaco" "WenQuanYi Micro Hei" 14 15)
+  (spacemacs//set-monospaced-font "Monaco" "WenQuanYi Micro Hei" 14 16)
 
   ;; for python layer
   ;; (add-hook 'anaconda-mode-hook

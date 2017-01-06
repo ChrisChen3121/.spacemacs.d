@@ -102,11 +102,6 @@
 ;;     :init
 ;;     (add-hook 'c-mode-common-hook #'cmake-ide-setup)))
 
-;; (defun cc-c++/post-init-c++-mode ()
-;;   (when (configuration-layer/package-usedp 'clang-format)
-;;     (define-key c-mode-base-map [backtab] 'clang-format-buffer)))
-
-
 ;; (defun cc-c++/post-init-semantic ()
 ;;   (add-to-list 'semantic-default-submodes
 ;;                'global-semantic-idle-local-symbol-highlight-mode))
