@@ -23,9 +23,7 @@
     ;;semantic
     projectile
     ggtags
-    ;; clang-format
-    ;; disaster
-    cmake-ide
+    ;; cmake-ide
     ))
 
 (defun cc-c++/init-google-c-style ()
@@ -97,11 +95,12 @@
     "M-m m g" "gtags"
     "M-RET g" "gtags"))
 
-(defun cc-c++/init-cmake-ide ()
-  (use-package cmake-ide
-    :defer t
-    :init
-    (add-hook 'c-mode-common-hook #'cmake-ide-setup)))
+;; automatically add compile options
+;; (defun cc-c++/init-cmake-ide ()
+;;   (use-package cmake-ide
+;;     :defer t
+;;     :init
+;;     (add-hook 'c-mode-common-hook #'cmake-ide-setup)))
 
 ;; (defun cc-c++/post-init-c++-mode ()
 ;;   (when (configuration-layer/package-usedp 'clang-format)
