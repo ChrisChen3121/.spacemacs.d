@@ -7,3 +7,4 @@
 - [ ] projectile find other file 'cc h'
 - [ ] 'M-/' should do yas/expand in compliacted project
 - [ ] find more elegent way to detect std path
+- [ ] flycheck-irony support subdirectory
