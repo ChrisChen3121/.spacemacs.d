@@ -1,4 +1,5 @@
 # Compiled
+*.el~
 *.elc
 
 # Packaging
