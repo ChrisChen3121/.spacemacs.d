@@ -11,6 +11,7 @@
 
 (defconst cc-c++-packages
   '(
+    ;;cc-mode
     google-c-style
     irony
     ;;company

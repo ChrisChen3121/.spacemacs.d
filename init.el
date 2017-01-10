@@ -390,6 +390,7 @@ you should place your code here."
   (setq user-mail-address "ChrisChen3121@gmail.com")
   (setq dired-recursive-copies 'always)
   (delete-selection-mode 1)
+  (spacemacs//set-monospaced-font "Monaco" "WenQuanYi Micro Hei" 14 16)
   ;; (global-company-mode)
 
   (global-set-key (kbd "C-x o") 'switch-window)
@@ -432,7 +433,7 @@ you should place your code here."
 
   ;; development common
   (smartparens-global-mode)
-  (spacemacs//set-monospaced-font "Monaco" "WenQuanYi Micro Hei" 14 16)
+  (add-to-list 'auto-mode-alist )
 
   ;; for python layer
   ;; (add-hook 'anaconda-mode-hook
