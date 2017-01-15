@@ -22,6 +22,8 @@
     ;;flycheck
     (flycheck-irony :toggle (configuration-layer/package-usedp 'flycheck))
     ;;semantic
+    ;;disaster
+    clang-format
     projectile
     ggtags
     ;; cmake-ide
@@ -41,7 +43,7 @@
     :defer t
     :init
     (progn
-      (add-hook 'c-mode-common-hook 'irony-mode)
+      (spacemacs/add-to-hooks 'irony-mode '(c-mode-hook c++-mode-hook))
       (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
     :config
     (progn
@@ -49,7 +51,15 @@
       (defun cc-c++/generate-compile-options ()
         (interactive)
         (start-process-shell-command "generate-compile-options" nil
-                                     "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./" )))))
+                                     "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./" ))
+      (which-key-add-key-based-replacements
+        "C-c i" "irony")
+      (define-key c-mode-base-map (kbd "C-c i g") 'cc-c++/generate-compile-options)
+      (define-key c-mode-base-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
+      (define-key c-mode-base-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path))))
+      ;; (define-key dired-mode-map (kbd "C-c i g") 'cc-c++/generate-compile-options)
+      ;; (define-key dired-mode-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
+      ;; (define-key dired-mode-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path))))
 
 (defun cc-c++/init-company-irony ()
   (use-package company-irony
@@ -72,7 +82,6 @@
     (add-to-list 'company-backends-c-mode-common
                  'company-irony-c-headers)))
 
-
 (defun cc-c++/init-irony-eldoc ()
   (use-package irony-eldoc
     :defer t
@@ -87,14 +96,27 @@
     :init
     (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
 
-;; (defun cc-c++/post-init-projectile ()
-;;   (add-to-list 'projectile-other-file-alist '("h" "cc"))
-;;   (add-to-list 'projectile-other-file-alist '("cc" "h")))
-
 (defun cc-c++/post-init-ggtags ()
   (which-key-add-key-based-replacements
     "M-m m g" "gtags"
     "M-RET g" "gtags"))
+
+;; (defun cc-c++/pre-init-disaster ()
+;;   (spacemacs|use-package-add-hook disaster
+;;     :post-config
+;;     (dolist (mode '(c-mode c++-mode))
+;;       (define-key c-mode-base-map (kbd "C-c d") 'disaster))))
+
+;; (defun cc-c++/post-init-clang-format ()
+;;   (spacemacs/add-to-hooks
+;;    '(lambda () (define-key c-mode-base-map (kbd "<backtab>")
+;;                  '(c-mode-hook c++-mode-hook)))))
+
+;; (defun cc-c++/pre-init-clang-format ()
+;;   (spacemacs|use-package-add-hook clang-format
+;;     :post-config
+;;     (dolist (mode '(c-mode c++-mode))
+;;       (define-key c-mode-base-map (kbd "<backtab>") 'clang-format-buffer))))
 
 ;; automatically add compile options
 ;; (defun cc-c++/init-cmake-ide ()
@@ -107,20 +129,12 @@
 ;;   (add-to-list 'semantic-default-submodes
 ;;                'global-semantic-idle-local-symbol-highlight-mode))
 
-(eval-after-load "cc-mode"
-          '(progn
-            (when (configuration-layer/package-usedp 'clang-format)
-                  (define-key c-mode-base-map [backtab] 'clang-format-buffer))
-            (when (configuration-layer/package-usedp 'disaster)
-              (define-key c-mode-base-map (kbd "C-c d") 'disaster))
-            (when (configuration-layer/package-usedp 'irony)
-              (which-key-add-key-based-replacements
-                "C-c i" "irony")
-              (define-key c-mode-base-map (kbd "C-c i g") 'cc-c++/generate-compile-options)
-              (define-key c-mode-base-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
-              (define-key c-mode-base-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path)
-              (define-key dired-mode-map (kbd "C-c i g") 'cc-c++/generate-compile-options)
-              (define-key dired-mode-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
-              (define-key dired-mode-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path))))
+
+(defun cc-c++/pre-init-projectile ()
+ (spacemacs|use-package-add-hook projectile
+   :post-config
+   (dolist (mode '(c-mode c++-mode))
+     (add-to-list 'projectile-other-file-alist '("h" "cc"))
+     (add-to-list 'projectile-other-file-alist '("cc" "h")))))
 
 ;;; packages.el ends here
