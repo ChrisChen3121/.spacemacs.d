@@ -433,7 +433,9 @@ you should place your code here."
 
   ;; development common
   (smartparens-global-mode)
-  (add-to-list 'auto-mode-alist )
+  (add-hook 'flycheck-mode-hook
+            (lambda ()
+              (setq flycheck-pos-tip-timeout 10)))
 
   ;; elisp ;TODO: check why not work?
   ;; (add-hook 'emacs-lisp-mode-hook

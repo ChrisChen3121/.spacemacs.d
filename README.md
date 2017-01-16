@@ -8,5 +8,5 @@
 - [x] open .h file with c++-mode
 - [x] find more elegent way to detect std path
 - [x] flycheck-irony support subdirectory
-- [ ] flycheck tooltips to minibuffer or hover more time
-- [ ] warning for google protobuf mode
+- [x] flycheck tooltips to minibuffer or hover more time
+- [x] warning for google protobuf mode
