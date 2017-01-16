@@ -4,9 +4,9 @@
 
 ### C++ ###
 
-- [ ] projectile find other file 'cc h'
-- [ ] 'M-/' yas/expand not work in header file(default cc-mode)
-- [ ] find more elegent way to detect std path
-- [ ] flycheck-irony support subdirectory
+- [x] projectile find other file 'cc h'
+- [x] open .h file with c++-mode
+- [x] find more elegent way to detect std path
+- [x] flycheck-irony support subdirectory
 - [ ] flycheck tooltips to minibuffer or hover more time
 - [ ] warning for google protobuf mode

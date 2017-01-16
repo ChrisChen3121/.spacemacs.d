@@ -2,9 +2,9 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 (setq configuration-layer--elpa-archives
-    '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
-      ("org-cn"   . "https://elpa.zilongshanren.com/org/")
-      ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
+      '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
+        ("org-cn"   . "https://elpa.zilongshanren.com/org/")
+        ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -104,7 +104,6 @@ values."
 
      ;; games
      chinese
-
      octave
      html
 
@@ -113,6 +112,7 @@ values."
      cc-python
      cc-protobuf
      cc-c++
+
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -140,10 +140,10 @@ values."
    ;; them if they become unused. `all' installs *all* packages supported by
    ;; Spacemacs and never uninstall them. (default is `used-only')
    dotspacemacs-install-packages 'used-only))
-   ;; ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
-   ;; ;; are declared in a layer which is not a member of
-   ;; ;; the list `dotspacemacs-configuration-layers'. (default t)
-   ;; dotspacemacs-delete-orphan-packages t))
+;; ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
+;; ;; are declared in a layer which is not a member of
+;; ;; the list `dotspacemacs-configuration-layers'. (default t)
+;; dotspacemacs-delete-orphan-packages t))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -435,11 +435,17 @@ you should place your code here."
   (smartparens-global-mode)
   (add-to-list 'auto-mode-alist )
 
+  ;; elisp ;TODO: check why not work?
+  ;; (add-hook 'emacs-lisp-mode-hook
+  ;;           (lambda ()
+  ;;             (define-key emacs-lisp-mode-map (kbd "<backtab>")
+  ;;               'spacemacs/indent-region-or-buffer)))
+
   ;; for python layer
   ;; (add-hook 'anaconda-mode-hook
   ;;           (lambda ()
   ;;             (define-key anaconda-mode-map (kbd "M-,") 'anaconda-mode-go-back)
-  ;;             (define-key anaconda-eldoc-mode-hook [backtab] 'yapfify-buffer)
+  ;;             (define-key anaconda-mode-map [backtab] 'yapfify-buffer)
   ;;             (define-key anaconda-mode-map (kbd "C-c r b") 'anaconda-mode-go-back)
   ;;             (define-key anaconda-mode-map (kbd "C-c r d") 'anaconda-mode-show-doc)
   ;;             (define-key anaconda-mode-map (kbd "C-c r f") 'anaconda-mode-find-definitions)

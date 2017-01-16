@@ -1,1 +1,1 @@
-(configuration-layer/declare-layers '(c-c++))
+(configuration-layer/declare-layer 'c-c++)

@@ -22,10 +22,11 @@
     ;;flycheck
     (flycheck-irony :toggle (configuration-layer/package-usedp 'flycheck))
     ;;semantic
-    ;;disaster
-    clang-format
     projectile
     ggtags
+    clang-format
+    disaster
+    cc-mode
     ;; cmake-ide
     ))
 
@@ -44,7 +45,13 @@
     :init
     (progn
       (spacemacs/add-to-hooks 'irony-mode '(c-mode-hook c++-mode-hook))
-      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+      (add-hook 'irony-mode-hook
+                (lambda ()
+                  (define-key c-mode-base-map (kbd "C-c i g") 'cc-c++/generate-compile-options)
+                  (define-key c-mode-base-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
+                  (define-key c-mode-base-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path)
+                  )))
     :config
     (progn
       (setq irony-additional-clang-options '("-std=c++11"))
@@ -52,14 +59,7 @@
         (interactive)
         (start-process-shell-command "generate-compile-options" nil
                                      "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./" ))
-      (which-key-add-key-based-replacements
-        "C-c i" "irony")
-      (define-key c-mode-base-map (kbd "C-c i g") 'cc-c++/generate-compile-options)
-      (define-key c-mode-base-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
-      (define-key c-mode-base-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path))))
-      ;; (define-key dired-mode-map (kbd "C-c i g") 'cc-c++/generate-compile-options)
-      ;; (define-key dired-mode-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
-      ;; (define-key dired-mode-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path))))
+      (which-key-add-key-based-replacements"C-c i" "irony"))))
 
 (defun cc-c++/init-company-irony ()
   (use-package company-irony
@@ -94,29 +94,26 @@
     :if (configuration-layer/package-usedp 'flycheck)
     :defer t
     :init
-    (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
+    (spacemacs/add-to-hooks 'flycheck-irony-setup '(c-mode-hook c++-mode-hook))))
 
 (defun cc-c++/post-init-ggtags ()
   (which-key-add-key-based-replacements
     "M-m m g" "gtags"
     "M-RET g" "gtags"))
 
-;; (defun cc-c++/pre-init-disaster ()
-;;   (spacemacs|use-package-add-hook disaster
-;;     :post-config
-;;     (dolist (mode '(c-mode c++-mode))
-;;       (define-key c-mode-base-map (kbd "C-c d") 'disaster))))
+(defun cc-c++/pre-init-clang-format ()
+  (with-eval-after-load 'cc-mode
+    (define-key c-mode-base-map (kbd "<backtab>") 'clang-format-buffer)))
 
-;; (defun cc-c++/post-init-clang-format ()
-;;   (spacemacs/add-to-hooks
-;;    '(lambda () (define-key c-mode-base-map (kbd "<backtab>")
-;;                  '(c-mode-hook c++-mode-hook)))))
+(defun cc-c++/pre-init-disaster ()
+  (with-eval-after-load 'cc-mode
+    (define-key c-mode-base-map (kbd "C-c d") 'disaster)))
 
-;; (defun cc-c++/pre-init-clang-format ()
-;;   (spacemacs|use-package-add-hook clang-format
-;;     :post-config
-;;     (dolist (mode '(c-mode c++-mode))
-;;       (define-key c-mode-base-map (kbd "<backtab>") 'clang-format-buffer))))
+;; (with-eval-after-load 'cc-mode
+;;   (when (configuration-layer/package-usedp 'clang-format)
+;;         (define-key c-mode-base-map (kbd "<backtab>") 'clang-format-buffer))
+;;   (when (configuration-layer/package-usedp 'disaster)
+;;     (define-key c-mode-base-map (kbd "C-c d") 'disaster)))
 
 ;; automatically add compile options
 ;; (defun cc-c++/init-cmake-ide ()
@@ -129,12 +126,14 @@
 ;;   (add-to-list 'semantic-default-submodes
 ;;                'global-semantic-idle-local-symbol-highlight-mode))
 
+(defun cc-c++/post-init-cc-mode ()
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))) ;TODO: temporary solution
 
 (defun cc-c++/pre-init-projectile ()
- (spacemacs|use-package-add-hook projectile
-   :post-config
-   (dolist (mode '(c-mode c++-mode))
-     (add-to-list 'projectile-other-file-alist '("h" "cc"))
-     (add-to-list 'projectile-other-file-alist '("cc" "h")))))
+  (spacemacs|use-package-add-hook projectile
+    :post-config
+    (dolist (mode '(c-mode c++-mode))
+      (add-to-list 'projectile-other-file-alist '("h" "cc"))
+      (add-to-list 'projectile-other-file-alist '("cc" "h")))))
 
 ;;; packages.el ends here
