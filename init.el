@@ -101,6 +101,7 @@ values."
      ;;         python-auto-set-local-pyenv-version 'on-visit
      ;;         python-enable-yapf-format-on-save t
      ;;         py-yapf-options '("--style=google"))
+     common-lisp
 
      ;; games
      chinese
@@ -465,3 +466,17 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   (quote
+    ((eval setq flycheck-clang-include-path
+           (list
+            (expand-file-name "~/github/ag-strategy/ctp/include/")
+            (expand-file-name "~/github/ag-strategy/src/interface/include/")
+            (expand-file-name "~/github/ag-strategy/src/ctp_quote/")
+            (expand-file-name "~/github/ag-strategy/src/ctp_quote/Debug/")))
+     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/include/" "-I/home/chrischen/github/ag-strategy/src/ctp_quote/" "-I/home/chrischen/github/ag-strategy/src/ctp_quote/Debug/")))))
