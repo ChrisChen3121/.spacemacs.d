@@ -3,5 +3,5 @@
    (python :variables
            python-test-runner 'nose
            python-auto-set-local-pyenv-version 'on-visit
-           python-enable-yapf-format-on-save t
+           ; python-enable-yapf-format-on-save t
            py-yapf-options '("--style=google"))))

@@ -477,6 +477,13 @@ you should place your code here."
            (list
             (expand-file-name "~/github/ag-strategy/ctp/include/")
             (expand-file-name "~/github/ag-strategy/src/interface/include/")
+            (expand-file-name "~/github/ag-strategy/src/ctp_trade/")
+            (expand-file-name "~/github/ag-strategy/src/ctp_trade/Debug/")))
+     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/include/" "-I/home/chrischen/github/ag-strategy/src/ctp_trade/" "-I/home/chrischen/github/ag-strategy/src/ctp_trade/Debug/")
+     (eval setq flycheck-clang-include-path
+           (list
+            (expand-file-name "~/github/ag-strategy/ctp/include/")
+            (expand-file-name "~/github/ag-strategy/src/interface/include/")
             (expand-file-name "~/github/ag-strategy/src/ctp_quote/")
             (expand-file-name "~/github/ag-strategy/src/ctp_quote/Debug/")))
      (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/include/" "-I/home/chrischen/github/ag-strategy/src/ctp_quote/" "-I/home/chrischen/github/ag-strategy/src/ctp_quote/Debug/")))))

@@ -10,3 +10,6 @@
 - [x] flycheck-irony support subdirectory
 - [x] flycheck tooltips to minibuffer or hover more time
 - [x] warning for google protobuf mode
+
+### python ###
+- [ ] config yapfify for supporting utf8
