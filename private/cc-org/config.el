@@ -25,8 +25,8 @@
          :html-postamble nil
          :auto-sitemap t
          :sitemap-title "ChrisChen's notes"
-         :sitemap-filename "index.org"
-         :exclude "index.org")
+         :sitemap-filename "sitemap.org"
+         :exclude "sitemap.org")
         ("note-static"
          :base-directory "~/github/notes/org/resources"
          :publishing-directory "~/github/notes/html/resources"
