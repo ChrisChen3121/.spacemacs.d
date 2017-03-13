@@ -36,6 +36,9 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     html
+     ;; sql
+     ;; javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -61,10 +64,10 @@ values."
 
      ;; org bundle
      (org :variables
-          ;; org-enable-github-support t
+          org-enable-github-support t
           org-projectile-file "TODOs.org")
-     (deft :variables
-       deft-directory "~/Dropbox/notes/")
+     ;; (deft :variables
+     ;;   deft-directory "~/Dropbox/notes/")
 
      ;; for development
      (auto-completion :variables
@@ -79,7 +82,7 @@ values."
 
      (plantuml :variables
                plantuml-jar-path "~/tools/plantuml.jar"
-               ;; org-plantuml-jar-path "~/tools/plantuml.jar"
+               org-plantuml-jar-path "~/tools/plantuml.jar"
                plantuml-output-type "png")
      (gtags :variables
             gtags-enable-by-default t)
@@ -105,15 +108,13 @@ values."
 
      ;; games
      chinese
-     octave
-     html
+     ;; octave
 
      ;; private layers
      cc-org
      cc-python
      cc-protobuf
      cc-c++
-
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -471,19 +472,4 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(safe-local-variable-values
-   (quote
-    ((eval setq flycheck-clang-include-path
-           (list
-            (expand-file-name "~/github/ag-strategy/ctp/include/")
-            (expand-file-name "~/github/ag-strategy/src/interface/include/")
-            (expand-file-name "~/github/ag-strategy/src/ctp_trade/")
-            (expand-file-name "~/github/ag-strategy/src/ctp_trade/Debug/")))
-     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/include/" "-I/home/chrischen/github/ag-strategy/src/ctp_trade/" "-I/home/chrischen/github/ag-strategy/src/ctp_trade/Debug/")
-     (eval setq flycheck-clang-include-path
-           (list
-            (expand-file-name "~/github/ag-strategy/ctp/include/")
-            (expand-file-name "~/github/ag-strategy/src/interface/include/")
-            (expand-file-name "~/github/ag-strategy/src/ctp_quote/")
-            (expand-file-name "~/github/ag-strategy/src/ctp_quote/Debug/")))
-     (company-clang-arguments "-std=c++11" "-I/home/chrischen/github/ag-strategy/ctp/include/" "-I/home/chrischen/github/ag-strategy/src/interface/include/" "-I/home/chrischen/github/ag-strategy/src/ctp_quote/" "-I/home/chrischen/github/ag-strategy/src/ctp_quote/Debug/")))))
+)

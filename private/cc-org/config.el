@@ -12,23 +12,24 @@
 (setq org-publish-project-alist
       '(("note-org"
          :base-directory "~/github/notes/org"
-         :publishing-directory  "~/github/notes"
+         :publishing-directory  "~/github/notes/html"
          :base-extension "org"
          :recursive t
          :publishing-function org-html-publish-to-html
-         :headline-levels 3   ;can be customized in org's head
+         :headline-levels 3
          :style nil
          :auto-index nil
          :link-home "index.html"
          :section-numbers nil
          :html-preamble nil
          :html-postamble nil
-         :auto-sitemap t                ; Generate sitemap.org automagically...
-         :sitemap-title "ChrisChen的笔记"
-         :exclude "sitemap.org")  ; ... call it sitemap.org (it's the default)...
+         :auto-sitemap t
+         :sitemap-title "ChrisChen's notes"
+         :sitemap-filename "index.org"
+         :exclude "index.org")
         ("note-static"
-         :base-directory "~/github/notes/org/resources/"
-         :publishing-directory "~/github/notes/resources/"
+         :base-directory "~/github/notes/org/resources"
+         :publishing-directory "~/github/notes/html/resources"
          :recursive t
          :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt\\|el"
          :publishing-function org-publish-attachment)

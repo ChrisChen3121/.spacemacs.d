@@ -14,6 +14,7 @@
 (global-set-key (kbd "<f12> l") 'org-store-link)
 (global-set-key (kbd "<f12> c") 'org-capture)
 (global-set-key (kbd "<f12> t") 'org-clock-goto)
+(global-set-key (kbd "C-w") 'whole-line-or-region-kill-region)
 
 (add-hook 'org-mode-hook (lambda()
                            (define-key org-mode-map (kbd "M-n") 'org-forward-paragraph)
