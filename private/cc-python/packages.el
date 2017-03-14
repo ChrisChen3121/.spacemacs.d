@@ -24,7 +24,6 @@
     :post-config
     (progn
       (which-key-add-key-based-replacements
-        "C-c r" "anaconda find reference cmds"
         "C-c C-t" "skeleton"
         "C-c !" "flycheck"
         "C-c r" "anaconda")
