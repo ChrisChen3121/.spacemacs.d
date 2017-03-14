@@ -39,11 +39,6 @@ values."
      html
      ;; sql
      ;; javascript
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
      helm
      better-defaults
      emacs-lisp
@@ -58,16 +53,11 @@ values."
 
      ;; source control
      (git :variables
-          git-enable-magit-svn-plugin t
+          ;; git-enable-magit-svn-plugin t
           magit-repository-directories '("~/github/"))
      ;; github
 
-     ;; org bundle
-     (org :variables
-          org-enable-github-support t
-          org-projectile-file "TODOs.org")
-     ;; (deft :variables
-     ;;   deft-directory "~/Dropbox/notes/")
+
 
      ;; for development
      (auto-completion :variables
@@ -444,17 +434,6 @@ you should place your code here."
   ;;           (lambda ()
   ;;             (define-key emacs-lisp-mode-map (kbd "<backtab>")
   ;;               'spacemacs/indent-region-or-buffer)))
-
-  ;; for python layer
-  ;; (add-hook 'anaconda-mode-hook
-  ;;           (lambda ()
-  ;;             (define-key anaconda-mode-map (kbd "M-,") 'anaconda-mode-go-back)
-  ;;             (define-key anaconda-mode-map [backtab] 'yapfify-buffer)
-  ;;             (define-key anaconda-mode-map (kbd "C-c r b") 'anaconda-mode-go-back)
-  ;;             (define-key anaconda-mode-map (kbd "C-c r d") 'anaconda-mode-show-doc)
-  ;;             (define-key anaconda-mode-map (kbd "C-c r f") 'anaconda-mode-find-definitions)
-  ;;             (define-key anaconda-mode-map (kbd "C-c r r") 'anaconda-mode-find-references)
-  ;;             (define-key anaconda-mode-map (kbd "C-c r a")	'anaconda-mode-find-assignments)))
   )
 
 ;;=====================================================================
