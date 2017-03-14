@@ -12,7 +12,7 @@
   '(
     org
     graphviz-dot-mode
-    org-agenda
+    ;; org-agenda
     ))
 
 (defun cc-org/init-graphviz-dot-mode ()
@@ -20,10 +20,10 @@
     :defer t
     ))
 
-(defun cc-org/pre-init-org-agenda ()
-  (with-eval-after-load 'org-agenda
-    (require 'org-projectile)
-    (push (org-projectile:todo-files) org-agenda-files)))
+;; (defun cc-org/pre-init-org-agenda ()
+;;   (with-eval-after-load 'org-agenda
+;;     (require 'org-projectile)
+;;     (push (org-projectile:todo-files) org-agenda-files)))
 
 (defun cc-org/pre-init-org ()
   (with-eval-after-load 'org

@@ -12,7 +12,7 @@
 (setq org-publish-project-alist
       '(("note-org"
          :base-directory "~/github/notes/org"
-         :publishing-directory  "~/github/notes/html"
+         :publishing-directory  "~/github/notes"
          :base-extension "org"
          :recursive t
          :publishing-function org-html-publish-to-html
@@ -29,7 +29,7 @@
          :exclude "sitemap.org")
         ("note-static"
          :base-directory "~/github/notes/org/resources"
-         :publishing-directory "~/github/notes/html/resources"
+         :publishing-directory "~/github/notes/resources"
          :recursive t
          :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt\\|el"
          :publishing-function org-publish-attachment)
