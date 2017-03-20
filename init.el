@@ -1,8 +1,9 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-(setq configuration-layer--elpa-archives
-      '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
+
+(setq configuration-layer--elpa-archives '(("melpa-cn"
+      . "https://elpa.zilongshanren.com/melpa/")
         ("org-cn"   . "https://elpa.zilongshanren.com/org/")
         ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
 
@@ -36,12 +37,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     html
-     ;; sql
-     ;; javascript
      helm
-     better-defaults
-     emacs-lisp
      (colors :variables
              colors-colorize-identifiers 'variables
              colors-enable-nyan-cat-progress-bar t)
@@ -51,13 +47,20 @@ values."
                      =enable-flyspell-auto-completion= t)
      syntax-checking
 
+     ;; languages
+     emacs-lisp
+     html
+     ;; sql
+     ;; javascript
+     markdown
+     yaml
+     common-lisp
+
      ;; source control
      (git :variables
           ;; git-enable-magit-svn-plugin t
           magit-repository-directories '("~/github/"))
      ;; github
-
-
 
      ;; for development
      (auto-completion :variables
@@ -69,15 +72,12 @@ values."
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip nil
                       auto-completion-private-snippets-directory "~/.spacemacs.d/private/snippets/")
-
      (plantuml :variables
                plantuml-jar-path "~/tools/plantuml.jar"
                org-plantuml-jar-path "~/tools/plantuml.jar"
                plantuml-output-type "png")
      (gtags :variables
             gtags-enable-by-default t)
-     markdown
-     yaml
 
      ;;cscope
      ;; semantic ;; for lisp & c++ srefactor support
@@ -89,12 +89,6 @@ values."
             ;; shell-protect-eshell-prompt nil
             shell-default-term-shell "zsh")
      shell-scripts
-     ;; (python :variables
-     ;;         python-test-runner 'nose
-     ;;         python-auto-set-local-pyenv-version 'on-visit
-     ;;         python-enable-yapf-format-on-save t
-     ;;         py-yapf-options '("--style=google"))
-     common-lisp
 
      ;; games
      chinese
@@ -105,6 +99,7 @@ values."
      cc-python
      cc-protobuf
      cc-c++
+     cc-agenda
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -451,9 +446,4 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
- '(package-selected-packages
-   (quote
-    (yapfify yaml-mode xterm-color ws-butler window-numbering whole-line-or-region which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit switch-window sphinx-doc spaceline powerline smeargle slime-company slime slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode protobuf-mode popwin plantuml-mode pip-requirements persp-mode pcre2el paradox spinner pangu-spacing ox-gfm origami orgit org-projectile org-present org org-pomodoro alert log4e gntp org-plus-contrib org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode markdown-toc markdown-mode magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode irony-eldoc insert-shebang info+ indent-guide ido-vertical-mode hydra hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile helm-gtags helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode graphviz-dot-mode google-translate google-c-style golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck-irony flycheck pkg-info epl flx-ido flx fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump disaster diminish define-word cython-mode company-web web-completion-data company-statistics company-shell company-irony-c-headers company-irony irony company-c-headers company-anaconda company common-lisp-snippets column-enforce-mode color-identifiers-mode cmake-mode clean-aindent-mode clang-format chinese-pyim chinese-pyim-basedict pos-tip bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-dictionary auto-compile packed anaconda-mode pythonic f dash s aggressive-indent adaptive-wrap ace-window ace-pinyin pinyinlib ace-jump-mode ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup quelpa package-build spacemacs-theme))))
+ )

@@ -44,22 +44,19 @@
     :defer t
     :init
     (progn
+      (with-eval-after-load 'irony
+        (which-key-add-key-based-replacements"C-c i" "irony")
+        (define-key c-mode-base-map (kbd "C-c i g") 'cc-c++/generate-compile-options)
+        (define-key c-mode-base-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
+        (define-key c-mode-base-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path))
       (spacemacs/add-to-hooks 'irony-mode '(c-mode-hook c++-mode-hook))
-      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-      (add-hook 'irony-mode-hook
-                (lambda ()
-                  (define-key c-mode-base-map (kbd "C-c i g") 'cc-c++/generate-compile-options)
-                  (define-key c-mode-base-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
-                  (define-key c-mode-base-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path)
-                  )))
     :config
     (progn
       (setq irony-additional-clang-options '("-std=c++11"))
       (defun cc-c++/generate-compile-options ()
         (interactive)
         (start-process-shell-command "generate-compile-options" nil
-                                     "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./" ))
-      (which-key-add-key-based-replacements"C-c i" "irony"))))
+                                     "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./" ))))))
 
 (defun cc-c++/init-company-irony ()
   (use-package company-irony
@@ -108,23 +105,6 @@
 (defun cc-c++/pre-init-disaster ()
   (with-eval-after-load 'cc-mode
     (define-key c-mode-base-map (kbd "C-c d") 'disaster)))
-
-;; (with-eval-after-load 'cc-mode
-;;   (when (configuration-layer/package-usedp 'clang-format)
-;;         (define-key c-mode-base-map (kbd "<backtab>") 'clang-format-buffer))
-;;   (when (configuration-layer/package-usedp 'disaster)
-;;     (define-key c-mode-base-map (kbd "C-c d") 'disaster)))
-
-;; automatically add compile options
-;; (defun cc-c++/init-cmake-ide ()
-;;   (use-package cmake-ide
-;;     :defer t
-;;     :init
-;;     (add-hook 'c-mode-common-hook #'cmake-ide-setup)))
-
-;; (defun cc-c++/post-init-semantic ()
-;;   (add-to-list 'semantic-default-submodes
-;;                'global-semantic-idle-local-symbol-highlight-mode))
 
 (defun cc-c++/post-init-cc-mode ()
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))) ;TODO: temporary solution

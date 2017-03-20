@@ -12,7 +12,6 @@
   '(
     org
     graphviz-dot-mode
-    ;; org-agenda
     ))
 
 (defun cc-org/init-graphviz-dot-mode ()
@@ -20,15 +19,44 @@
     :defer t
     ))
 
-;; (defun cc-org/pre-init-org-agenda ()
-;;   (with-eval-after-load 'org-agenda
-;;     (require 'org-projectile)
-;;     (push (org-projectile:todo-files) org-agenda-files)))
+(defun cc-org/post-init-org ()
+  (add-to-list 'auto-mode-alist
+               '("\\.org_archive\\'" . org-mode))
+  (setq org-publish-project-alist
+      '(("note-org"
+         :base-directory "~/github/notes/org"
+         :publishing-directory  "~/github/notes"
+         :base-extension "org"
+         :recursive t
+         :publishing-function org-html-publish-to-html
+         :headline-levels 3
+         :style nil
+         :auto-index nil
+         :link-home "index.html"
+         :section-numbers nil
+         :html-preamble nil
+         :html-postamble nil
+         :auto-sitemap t
+         :sitemap-title "ChrisChen's notes"
+         :sitemap-filename "sitemap.org"
+         :exclude "sitemap.org")
+        ("note-static"
+         :base-directory "~/github/notes/org/resources"
+         :publishing-directory "~/github/notes/resources"
+         :recursive t
+         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt\\|el"
+         :publishing-function org-publish-attachment)
+        ("note"
+         :components ("note-org" "note-static")
+         :author "ChrisChen3121@gmail.com"
+         ))))
 
 (defun cc-org/pre-init-org ()
   (with-eval-after-load 'org
     (setq org-ditaa-jar-path "~/tools/ditaa.jar")
     (setq org-confirm-babel-evaluate nil)
+    (define-key org-mode-map (kbd "M-n") 'org-forward-paragraph)
+    (define-key org-mode-map (kbd "M-p") 'org-backward-paragraph)
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((emacs-lisp . t)
