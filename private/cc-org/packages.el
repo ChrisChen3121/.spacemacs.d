@@ -22,6 +22,18 @@
 (defun cc-org/post-init-org ()
   (add-to-list 'auto-mode-alist
                '("\\.org_archive\\'" . org-mode))
+  (setq org-html-mathjax-options
+        '((path "https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML")
+          (scale "100")
+          (align "left")
+          (font "TeX")
+          (linebreaks "false")
+          (autonumber "AMS")
+          (indent "5em")
+          (multlinewidth "85%")
+          (tagindent ".8em")
+          (tagside "left")))
+
   (setq org-publish-project-alist
       '(("note-org"
          :base-directory "~/github/notes/org"
@@ -39,7 +51,8 @@
          :auto-sitemap t
          :sitemap-title "ChrisChen's notes"
          :sitemap-filename "sitemap.org"
-         :exclude "sitemap.org")
+         :exclude "sitemap.org"
+         )
         ("note-static"
          :base-directory "~/github/notes/org/resources"
          :publishing-directory "~/github/notes/resources"
@@ -48,7 +61,8 @@
          :publishing-function org-publish-attachment)
         ("note"
          :components ("note-org" "note-static")
-         :author "ChrisChen3121@gmail.com"
+         :author "Chris Chen"
+         :email "ChrisChen3121@gmail.com"
          ))))
 
 (defun cc-org/pre-init-org ()

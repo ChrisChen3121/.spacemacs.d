@@ -37,9 +37,11 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     better-defaults
+
      helm
      (colors :variables
-             colors-colorize-identifiers 'variables
+             colors-colorize-identifiers 'variables ;; TODO: need to disable when export html in org mode
              colors-enable-nyan-cat-progress-bar t)
      (spell-checking :variables
                      spell-checking-enable-by-default nil
@@ -50,7 +52,7 @@ values."
      ;; languages
      emacs-lisp
      html
-     ;; sql
+     sql
      ;; javascript
      markdown
      yaml

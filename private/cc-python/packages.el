@@ -20,7 +20,6 @@
     :defer t
     :init
     (progn
-      (define-key python-mode-map (kbd "C-c C-d") 'sphinx-doc)
       (add-hook 'python-mode-hook
                 (lambda ()
                   (sphinx-doc-mode t))))))
@@ -42,4 +41,7 @@
     :pre-init
     (with-eval-after-load 'python
       (define-key python-mode-map (kbd "C-c C-b") 'cc-python/python-add-breakpoint)
-      (define-key python-mode-map (kbd "C-c C-c") 'python-shell-send-buffer-switch))))
+      (define-key python-mode-map (kbd "C-c C-c") 'python-shell-send-buffer-switch)
+      (when (configuration-layer/package-usedp 'sphinx-doc)
+        (define-key python-mode-map (kbd "C-c C-d") 'sphinx-doc)))
+    ))
