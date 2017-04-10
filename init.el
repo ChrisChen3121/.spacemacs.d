@@ -31,7 +31,6 @@ values."
    dotspacemacs-ask-for-lazy-installation t
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   ;; dotspacemacs-configuration-layer-path '("~/.spacemacs.d/private/")
 
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
@@ -193,18 +192,19 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-light
-                         monokai)
+   dotspacemacs-themes '(monokai
+                         spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
+
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Monaco"
                                :size 14
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1
-                               )
+                               :powerline-scale 1.1)
+
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Vim Ex commands (default ":")
@@ -448,4 +448,6 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(package-selected-packages
+   (quote
+    (yapfify sphinx-doc pyvenv pytest pyenv-mode py-isort protobuf-mode pip-requirements ox-gfm org-projectile org-present org-pomodoro alert log4e gntp org-download live-py-mode irony-eldoc hy-mode htmlize helm-pydoc graphviz-dot-mode google-c-style gnuplot flycheck-irony disaster cython-mode company-irony-c-headers company-irony irony company-c-headers company-anaconda cmake-mode clang-format anaconda-mode pythonic yaml-mode xterm-color ws-butler winum whole-line-or-region which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit switch-window sql-indent spaceline powerline smeargle slime-company slime slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode popwin plantuml-mode persp-mode pcre2el paradox spinner pangu-spacing origami orgit org-plus-contrib org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode markdown-toc markdown-mode magit-gitflow macrostep lorem-ipsum linum-relative link-hint less-css-mode insert-shebang info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile helm-gtags helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck pkg-info epl flx-ido flx fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump f s diminish define-word company-web web-completion-data company-statistics company-shell company common-lisp-snippets column-enforce-mode color-identifiers-mode clean-aindent-mode chinese-pyim chinese-pyim-basedict pos-tip bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-dictionary auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-pinyin pinyinlib ace-jump-mode ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup))))
