@@ -13,6 +13,7 @@
     sphinx-doc
     anaconda-mode
     python
+    (pyvenv :excluded t)
     ))
 
 (defun cc-python/init-sphinx-doc ()
