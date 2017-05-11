@@ -67,7 +67,7 @@
 
 (defun cc-org/pre-init-org ()
   (with-eval-after-load 'org
-    (setq org-ditaa-jar-path "~/tools/ditaa.jar")
+    (setq org-ditaa-jar-path "/usr/bin/ditaa")
     (setq org-confirm-babel-evaluate nil)
     (define-key org-mode-map (kbd "M-n") 'org-forward-paragraph)
     (define-key org-mode-map (kbd "M-p") 'org-backward-paragraph)

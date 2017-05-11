@@ -75,8 +75,8 @@ values."
                       auto-completion-private-snippets-directory "~/.spacemacs.d/snippets/")
 
      (plantuml :variables
-               plantuml-jar-path "~/tools/plantuml.jar"
-               org-plantuml-jar-path "~/tools/plantuml.jar"
+               plantuml-jar-path "/usr/bin/plantuml"
+               org-plantuml-jar-path "/usr/bin/plantuml"
                plantuml-output-type "png")
      (gtags :variables
             gtags-enable-by-default t)
@@ -434,3 +434,17 @@ you should place your code here."
 ;;=====================================================================
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C")))))
