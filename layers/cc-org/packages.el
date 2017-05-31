@@ -69,9 +69,9 @@
   (with-eval-after-load 'org
     (setq org-ditaa-jar-path "/usr/bin/ditaa")
     (setq org-confirm-babel-evaluate nil)
+    (define-key org-mode-map (kbd "C-c w") 'org-refile)
     (define-key org-mode-map (kbd "M-n") 'org-forward-paragraph)
     (define-key org-mode-map (kbd "M-p") 'org-backward-paragraph)
-    (define-key org-mode-map (kbd "C-c w") 'org-refile)
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((emacs-lisp . t)

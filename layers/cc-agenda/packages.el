@@ -87,6 +87,38 @@
          (with-eval-after-load 'org
            (add-to-list 'org-modules 'org-habit)
            ;;==========================================
+           ;; org refile setup
+           ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
+           (setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                            (org-agenda-files :maxlevel . 9))))
+           ; Use full outline paths for refile targets - we file directly with IDO
+           (setq org-refile-use-outline-path t)
+
+           ; Targets complete directly with IDO
+           (setq org-outline-path-complete-in-steps nil)
+
+           ; Allow refile to create parent tasks with confirmation
+           (setq org-refile-allow-creating-parent-nodes (quote confirm))
+
+           ; Use IDO for both buffer and file completion and ido-everywhere to t
+           (setq org-completion-use-ido t)
+           (setq ido-everywhere t)
+           (setq ido-max-directory-size 100000)
+           (ido-mode (quote both))
+           ; Use the current window when visiting files and buffers with ido
+           (setq ido-default-file-method 'selected-window)
+           (setq ido-default-buffer-method 'selected-window)
+           ; Use the current window for indirect buffer display
+           (setq org-indirect-buffer-display 'current-window)
+
+           ; Exclude DONE state tasks from refile targets
+           (defun bh/verify-refile-target ()
+             "Exclude todo keywords with a done state from refile targets"
+             (not (member (nth 2 (org-heading-components)) org-done-keywords)))
+
+           (setq org-refile-target-verify-function 'bh/verify-refile-target)
+
+           ;;==========================================
            ;; org clock setup
            ;; Resume clocking task when emacs is restarted
            ;; (org-clock-persistence-insinuate)
@@ -127,10 +159,14 @@
                    ("h" "Habit" entry (file org-default-notes-file)
                     "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")))
            )
+         (with-eval-after-load 'org-agenda
+           (define-key org-agenda-mode-map (kbd "C-c w") 'org-agenda-refile))
          ))
 
 (defun cc-agenda/post-init-org-agenda ()
   (progn
+    (setq org-agenda-span 'day)
+    (setq org-deadline-warning-days 30)
     (setq org-agenda-auto-exclude-function 'bh/org-auto-exclude-function)
 
     ;; ==========================================
@@ -143,7 +179,7 @@
              ((org-agenda-overriding-header "Habits")
               (org-agenda-sorting-strategy
                '(todo-state-down effort-up category-keep))))
-            ("x" "All todos"
+            (" " "All todos"
              ((agenda "" nil)
               (tags "REFILE"
                     ((org-agenda-overriding-header "Tasks to Refile")
