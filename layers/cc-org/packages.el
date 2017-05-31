@@ -21,7 +21,7 @@
 
 (defun cc-org/post-init-org ()
   (add-to-list 'auto-mode-alist
-               '("\\.org_archive\\'" . org-mode))
+               '("\\.\\(org_archive\\|txt\\)$" . org-mode))
   (setq org-html-mathjax-options
         '((path "https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML")
           (scale "100")
@@ -71,6 +71,7 @@
     (setq org-confirm-babel-evaluate nil)
     (define-key org-mode-map (kbd "M-n") 'org-forward-paragraph)
     (define-key org-mode-map (kbd "M-p") 'org-backward-paragraph)
+    (define-key org-mode-map (kbd "C-c w") 'org-refile)
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((emacs-lisp . t)

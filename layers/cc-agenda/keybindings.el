@@ -9,4 +9,4 @@
 ;;
 ;;; License: GPLv3
 (global-set-key (kbd "C-c b") 'org-iswitchb)
-(global-set-key (kbd "C-c o t") 'org-tags-view)
+; (global-set-key (kbd "C-c o t") 'org-tags-view)
