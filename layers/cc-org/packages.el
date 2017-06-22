@@ -21,7 +21,7 @@
 
 (defun cc-org/post-init-org ()
   (add-to-list 'auto-mode-alist
-               '("\\.\\(org_archive\\|txt\\)$" . org-mode))
+               '("\\.\\(org_archive\\)$" . org-mode))
   (setq org-html-mathjax-options
         '((path "https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML")
           (scale "100")
