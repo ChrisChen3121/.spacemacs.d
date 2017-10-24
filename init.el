@@ -36,6 +36,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     javascript
      better-defaults
 
      helm
@@ -50,9 +51,11 @@ values."
 
      ;; languages
      emacs-lisp
+     rust
      html
      sql
-     ;; javascript
+     docker
+     javascript
      markdown
      yaml
      common-lisp
@@ -73,10 +76,10 @@ values."
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip 'manual
                       auto-completion-private-snippets-directory "~/.spacemacs.d/snippets/")
-
+     ;;graphviz
      (plantuml :variables
-               plantuml-jar-path "/usr/bin/plantuml"
-               org-plantuml-jar-path "/usr/bin/plantuml"
+               plantuml-jar-path "~/tools/plantuml.jar"
+               org-plantuml-jar-path "~/tools/plantuml.jar"
                plantuml-output-type "png")
      (gtags :variables
             gtags-enable-by-default t)
@@ -91,6 +94,7 @@ values."
             ;; shell-protect-eshell-prompt nil
             shell-default-term-shell "zsh")
      shell-scripts
+
 
      ;; games
      chinese
@@ -193,9 +197,9 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai
-                         spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(spacemacs-light
+                         monokai
+                         spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
 
@@ -447,4 +451,4 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C")))))
+ )
