@@ -3,9 +3,9 @@
 ;; It must be stored in your home directory.
 
 (setq configuration-layer--elpa-archives '(("melpa-cn"
-      . "https://elpa.zilongshanren.com/melpa/")
-        ("org-cn"   . "https://elpa.zilongshanren.com/org/")
-        ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
+                                            . "http://elpa.emacs-china.org/melpa/")
+                                           ("org-cn" . "http://elpa.emacs-china.org/org/")
+                                           ("gnu-cn" . "http://elpa.emacs-china.org/gnu/")))
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
