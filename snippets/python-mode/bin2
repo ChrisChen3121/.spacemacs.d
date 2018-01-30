@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: env
-# key: env
+# name: env2
+# key: !2
 # --
 #!/usr/bin/env python2
