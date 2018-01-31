@@ -52,7 +52,7 @@
       (spacemacs/add-to-hooks 'irony-mode '(c-mode-hook c++-mode-hook))
     :config
     (progn
-      (setq irony-additional-clang-options '("-std=c++11"))
+      (setq irony-additional-clang-options '("-std=c++14"))
       (defun cc-c++/generate-compile-options ()
         (interactive)
         (start-process-shell-command "generate-compile-options" nil
