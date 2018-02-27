@@ -3,9 +3,9 @@
 ;; It must be stored in your home directory.
 
 (setq configuration-layer--elpa-archives '(("melpa-cn"
-                                            . "http://elpa.emacs-china.org/melpa/")
-                                           ("org-cn" . "http://elpa.emacs-china.org/org/")
-                                           ("gnu-cn" . "http://elpa.emacs-china.org/gnu/")))
+                                            . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+                                           ("org-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+                                           ("gnu-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -445,7 +445,10 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default))))
+    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
+ '(package-selected-packages
+   (quote
+    (yapfify sphinx-doc pytest pyenv-mode py-isort protobuf-mode pip-requirements ox-gfm org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download live-py-mode irony-eldoc hy-mode htmlize helm-pydoc graphviz-dot-mode google-c-style gnuplot flycheck-irony disaster cython-mode company-irony-c-headers company-irony irony company-c-headers company-anaconda cmake-mode clang-format anaconda-mode pythonic yaml-mode xterm-color ws-butler winum whole-line-or-region which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toml-mode toc-org tagedit switch-window sql-indent spaceline smeargle slime-company slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters racer pyim pug-mode popwin plantuml-mode persp-mode pcre2el paradox pangu-spacing origami orgit org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode markdown-toc magit-gitflow lorem-ipsum livid-mode linum-relative link-hint less-css-mode js2-refactor js-doc insert-shebang indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags fuzzy flyspell-correct-helm flycheck-rust flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump dockerfile-mode docker diminish define-word company-web company-tern company-statistics company-shell company-quickhelp common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode clean-aindent-mode cargo auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
