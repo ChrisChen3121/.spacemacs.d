@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: d_operator!=
+# key: !=
+# group: operator declaration
+# --
+bool operator!=(const ${1:MyClass} &) const;

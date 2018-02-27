@@ -1,7 +1,6 @@
 # -*- mode: snippet -*-
 # name: class
 # key: cls
-# group: c++
 # --
 class ${1:Name} {
  public:

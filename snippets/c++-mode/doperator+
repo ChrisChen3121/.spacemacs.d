@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: d_operator+
+# key: +
+# group: operator declaration
+# --
+${1:MyClass} operator+(const $1 &);

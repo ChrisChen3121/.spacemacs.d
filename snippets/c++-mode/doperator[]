@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: d_operator[]
+# key: []
+# group: operator declaration
+# --
+${1:Type}& operator[](${2:int index});
