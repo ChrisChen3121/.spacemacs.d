@@ -56,7 +56,7 @@ values."
      docker
      ;; javascript
      markdown
-     ;; yaml
+     yaml
      ;; common-lisp
 
      ;; source control
