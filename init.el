@@ -36,12 +36,11 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     javascript
      better-defaults
 
      helm
      (colors :variables
-             colors-colorize-identifiers 'variables ;; TODO: need to disable when export html in org mode
+             colors-colorize-identifiers 'variables
              colors-enable-nyan-cat-progress-bar t)
      (spell-checking :variables
                      spell-checking-enable-by-default nil
@@ -51,14 +50,14 @@ values."
 
      ;; languages
      emacs-lisp
-     rust
+     ;; rust
      html
      sql
      docker
-     javascript
+     ;; javascript
      markdown
-     yaml
-     common-lisp
+     ;; yaml
+     ;; common-lisp
 
      ;; source control
      (git :variables
