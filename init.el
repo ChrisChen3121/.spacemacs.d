@@ -73,8 +73,8 @@ values."
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0.4
                       auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-help-tooltip 'manual
-                      auto-completion-private-snippets-directory "~/.spacemacs.d/snippets/")
+                      auto-completion-enable-help-tooltip 'manual)
+
      ;;graphviz
      (plantuml :variables
                plantuml-jar-path "~/tools/plantuml.jar"
@@ -112,6 +112,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     yasnippet-snippets
      switch-window
      whole-line-or-region
      )
