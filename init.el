@@ -2,10 +2,7 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
-(setq configuration-layer--elpa-archives '(("melpa-cn"
-                                            . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-                                           ("org-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-                                           ("gnu-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+;; emacs 24.5, spacemacs 0.200.13.x
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -29,102 +26,40 @@ values."
    ;; If non-nil then Spacemacs will ask for confirmation before installing
    ;; a layer lazily. (default t)
    dotspacemacs-ask-for-lazy-installation t
+   ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-
-   ;; List of configuration layers to load. If it is the symbol `all' instead
-   ;; of a list then all discovered layers will be installed.
+   dotspacemacs-configuration-layer-path '()
+   ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     better-defaults
-
-     helm
-     (colors :variables
-             colors-colorize-identifiers 'variables
-             colors-enable-nyan-cat-progress-bar t)
-     (spell-checking :variables
-                     spell-checking-enable-by-default nil
-                     spell-checking-enable-auto-dictionary t
-                     =enable-flyspell-auto-completion= t)
-     syntax-checking
-
-     ;; languages
-     emacs-lisp
-     ;; rust
-     html
-     sql
-     docker
-     ;; javascript
-     markdown
-     yaml
-     ;; common-lisp
-
-     ;; source control
-     (git :variables
-          ;; git-enable-magit-svn-plugin t
-          magit-repository-directories '("~/github/"))
-     ;; github
-
-     ;; for development
-     (auto-completion :variables
-                      auto-completion-enable-snippets-in-popup nil
-                      ;; auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'cycle
-                      auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.4
-                      auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-help-tooltip 'manual)
-
-     ;;graphviz
-     (plantuml :variables
-               plantuml-jar-path "~/tools/plantuml.jar"
-               org-plantuml-jar-path "~/tools/plantuml.jar"
-               plantuml-output-type "png")
-     (gtags :variables
-            gtags-enable-by-default t)
-
-     ;;cscope
-     ;; semantic ;; for lisp & c++ srefactor support
-     (shell :variables
-            shell-default-shell 'eshell
-            shell-default-height 30
-            shell-default-position 'bottem
-            ;; shell-enable-smart-eshell t
-            ;; shell-protect-eshell-prompt nil
-            shell-default-term-shell "zsh")
-     shell-scripts
-
-
-     ;; games
-     chinese
-     ;; octave
-
-     ;; private layers
-     cc-org
+     ;; ----------------------------------------------------------------
+     ;; Example of useful layers you may want to use right away.
+     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+     ;; <M-m f e R> (Emacs style) to install them.
+     ;; ----------------------------------------------------------------
+     cc-better-defaults
+     cc-dev-base
+     cc-emacs-lisp
+     cc-chinese
      cc-python
-     cc-protobuf
      cc-c++
      cc-agenda
+     cc-doc
      )
+
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages
-   '(
-     yasnippet-snippets
-     switch-window
-     whole-line-or-region
-     )
-   ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages
-   '(
-     ;; gnuplot
-     ;; rainbow-identifiers
-     ;; gist
-     ;; git-flow
-     ;; evil-org-mode
-     )
+   dotspacemacs-additional-packages '()
+   ;; A list of packages that cannot be updated.
+   dotspacemacs-frozen-packages '()
+   ;; A list of packages that will not be installed and loaded.
+   dotspacemacs-excluded-packages '(
+                                    org-projectile ;; [bug] in conflict with org layer
+                                    fill-column-indicator ;; need emacs25+
+                                    )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -133,10 +68,6 @@ values."
    ;; them if they become unused. `all' installs *all* packages supported by
    ;; Spacemacs and never uninstall them. (default is `used-only')
    dotspacemacs-install-packages 'used-only))
-;; ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
-;; ;; are declared in a layer which is not a member of
-;; ;; the list `dotspacemacs-configuration-layers'. (default t)
-;; dotspacemacs-delete-orphan-packages t))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -202,43 +133,37 @@ values."
                          spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
-
-   ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
-   ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Monaco"
-                               :size 14
+   ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
+   ;; quickly tweak the mode-line size to make separators look not too crappy.
+   dotspacemacs-default-font '("Source Code Pro"
+                               :size 13
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
-
    ;; The leader key
    dotspacemacs-leader-key "SPC"
+   ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
+   ;; (default "SPC")
+   dotspacemacs-emacs-command-key "SPC"
    ;; The key used for Vim Ex commands (default ":")
    dotspacemacs-ex-command-key ":"
-   dotspacemacs-emacs-command-key ":"
-
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
    dotspacemacs-emacs-leader-key "M-m"
    ;; Major mode leader key is a shortcut key which is the equivalent of
    ;; pressing `<leader> m`. Set it to `nil` to disable it. (default ",")
-   dotspacemacs-major-mode-leader-key nil
+   dotspacemacs-major-mode-leader-key ","
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
-   ;; (default "C-M-m)
+   ;; (default "C-M-m")
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
    ;; These variables control whether separate commands are bound in the GUI to
    ;; the key pairs C-i, TAB and C-m, RET.
    ;; Setting it to a non-nil value, allows for separate commands under <C-i>
    ;; and TAB or <C-m> and RET.
-   ;; in the terminal, these pairs are generally indistinguishable, so this only
+   ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
-
-   ;; The command key used for Evil commands (ex-commands) and
-   ;; Emacs commands (M-x).
-   ;; By default the command key is `:' so ex-commands are executed like in Vim
-   ;; with `:' and Emacs commands are executed with `<leader> :'.
-   ;; If non nil `Y' is remapped to `y$'. (default t)
+   ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
    dotspacemacs-remap-Y-to-y$ t
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
@@ -321,29 +246,38 @@ values."
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
    dotspacemacs-mode-line-unicode-symbols t
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
-   ;; scrolling overrides the default behavior of Emacs which recenters the
-   ;; point when it reaches the top or bottom of the screen. (default t)
+   ;; scrolling overrides the default behavior of Emacs which recenters point
+   ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
-   ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
-   ;; derivatives. If set to `relative', also turns on relative line numbers.
+   ;; Control line numbers activation.
+   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
+   ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
+   ;; This variable can also be set to a property list for finer control:
+   ;; '(:relative nil
+   ;;   :disabled-for-modes dired-mode
+   ;;                       doc-view-mode
+   ;;                       markdown-mode
+   ;;                       org-mode
+   ;;                       pdf-view-mode
+   ;;                       text-mode
+   ;;   :size-limit-kb 1000)
    ;; (default nil)
    dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'origami ;TODO: need to set shortcut
+   dotspacemacs-folding-method 'origami
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis nil
-
+   dotspacemacs-smart-closing-parenthesis t
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
    dotspacemacs-highlight-delimiters 'all
-   ;; If non nil advises quit functions to keep server open when quitting.
+   ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
    ;; List of search tool executable names. Spacemacs uses the first installed
@@ -369,6 +303,10 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (setq user-mail-address "chrischen3121@gmail.com")
+  (setq configuration-layer--elpa-archives '(("melpa-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+                                             ("org-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+                                             ("gnu-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
   )
 
 (defun dotspacemacs/user-config ()
@@ -378,80 +316,8 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (setq user-mail-address "ChrisChen3121@gmail.com")
-  (setq dired-recursive-copies 'always)
-  (delete-selection-mode 1)
-  (spacemacs//set-monospaced-font "Monaco" "WenQuanYi Micro Hei" 14 16)
-  ;; (global-company-mode)
-
-  (global-set-key (kbd "C-x o") 'switch-window)
-  (global-set-key (kbd "C-x C-b") 'buffer-menu-other-window)
-  (global-set-key (kbd "C-w") 'whole-line-or-region-kill-region)
-  (global-set-key (kbd "M-w") 'whole-line-or-region-kill-ring-save)
-  (global-set-key (kbd "S-SPC") 'set-mark-command)
-
-  ;; need to check: semantic makes scroll-down-command not work
-  (global-set-key (kbd "M-v") 'scroll-down)
-
-  ;; set which-key name
-  (which-key-add-key-based-replacements
-    "C-c @" "hs"
-    "C-c ," "semantic"
-    "C-c C-w" "eyebrowse"
-    "C-c C-d" "describe"
-    "C-x ESC" "redo"
-    "C-x RET" "lang env"
-    "C-x 4" "other window"
-    "C-x 5" "other frame"
-    "C-x 8" "special char"
-    "C-x @" "event apply"
-    "C-x a" "abbrev"
-    "C-x n" "narrow"
-    "C-x r" "retangle|register"
-    "C-x X" "edebug"
-    "C-x C-a" "edebug-mode"
-    "C-c !" "flycheck"
-    "C-c p" "projectile"
-    )
-
-  ;; for chrome layer
-  (setq edit-server-url-major-mode-alist
-        '(("github\\.com" . markdown-mode)))
-  (setq edit-server-default-major-mode 'markdown-mode)
-
-  ;; enable rainbow-mode only for writting css
-  (add-hook 'css-mode-hook 'rainbow-mode)
-
-  ;; development common
-  (smartparens-global-mode)
-  (add-hook 'flycheck-mode-hook
-            (lambda ()
-              (setq flycheck-pos-tip-timeout 10)))
-
-  ;; elisp ;TODO: check why not work?
-  ;; (add-hook 'emacs-lisp-mode-hook
-  ;;           (lambda ()
-  ;;             (define-key emacs-lisp-mode-map (kbd "<backtab>")
-  ;;               'spacemacs/indent-region-or-buffer)))
+  (spacemacs//set-monospaced-font "Source Code Pro" "WenQuanYi Micro Hei" 13 16)
   )
 
-;;=====================================================================
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
- '(package-selected-packages
-   (quote
-    (yapfify sphinx-doc pytest pyenv-mode py-isort protobuf-mode pip-requirements ox-gfm org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download live-py-mode irony-eldoc hy-mode htmlize helm-pydoc graphviz-dot-mode google-c-style gnuplot flycheck-irony disaster cython-mode company-irony-c-headers company-irony irony company-c-headers company-anaconda cmake-mode clang-format anaconda-mode pythonic yaml-mode xterm-color ws-butler winum whole-line-or-region which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toml-mode toc-org tagedit switch-window sql-indent spaceline smeargle slime-company slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters racer pyim pug-mode popwin plantuml-mode persp-mode pcre2el paradox pangu-spacing origami orgit org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode markdown-toc magit-gitflow lorem-ipsum livid-mode linum-relative link-hint less-css-mode js2-refactor js-doc insert-shebang indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags fuzzy flyspell-correct-helm flycheck-rust flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump dockerfile-mode docker diminish define-word company-web company-tern company-statistics company-shell company-quickhelp common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode clean-aindent-mode cargo auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

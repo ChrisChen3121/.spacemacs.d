@@ -1,0 +1,8 @@
+(which-key-add-key-based-replacements "C-c s" "org-show")
+(which-key-add-key-based-replacements "C-c C-x" "org-agenda")
+(which-key-add-key-based-replacements "C-c C-v" "org-babel")
+(which-key-add-key-based-replacements "C-c o" "organize-life")
+(global-set-key (kbd "C-c o c") 'calendar)
+(global-set-key (kbd "C-c o g") 'gnus)
+(global-set-key (kbd "C-c s l") 'org-toggle-link-display)
+(global-set-key (kbd "C-c s i") 'org-toggle-inline-images)
