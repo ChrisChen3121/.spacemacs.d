@@ -21,6 +21,7 @@
     ))
 
 (defun cc-doc/post-init-org ()
+  (add-hook 'org-mode-hook #'flyspell-mode)
   (add-to-list 'auto-mode-alist
                '("\\.\\(org_archive\\)$" . org-mode))
   (setq org-html-mathjax-options
