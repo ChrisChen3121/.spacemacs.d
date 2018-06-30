@@ -13,5 +13,5 @@
 ## TODO List ##
 
 - [ ] org export error with 24.5(temporary solution `C-u M-x org-reload`)
-- [ ] change the default width of table in html
+- [X] change the default width of table in html
 - [ ] make brace-like char(=, ~, etc.) to embrace selected region by default

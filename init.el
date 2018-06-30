@@ -46,6 +46,7 @@ values."
      cc-c++
      cc-agenda
      cc-doc
+     octave
      )
 
    ;; List of additional packages that will be installed without being
