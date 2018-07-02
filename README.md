@@ -1,5 +1,9 @@
 # .spacemacs.d #
 
+## Requirements ##
+- emacs 24.5+
+- spacemaces 0.200.13
+
 ## Layers ##
 - cc-better-defaults
 - cc-dev-base

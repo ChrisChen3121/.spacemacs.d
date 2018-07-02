@@ -58,6 +58,7 @@ values."
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
+                                    evil-ediff
                                     org-projectile ;; [bug] in conflict with org layer
                                     fill-column-indicator ;; need emacs25+
                                     )
