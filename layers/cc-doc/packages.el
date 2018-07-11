@@ -31,7 +31,7 @@
           (font "TeX")
           (linebreaks "false")
           (autonumber "AMS")
-          (indent "5em")
+          (indent "2em")
           (multlinewidth "85%")
           (tagindent ".8em")
           (tagside "left")))
