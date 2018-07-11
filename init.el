@@ -306,9 +306,9 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (setq user-mail-address "chrischen3121@gmail.com")
-  (setq configuration-layer--elpa-archives '(("melpa-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-                                             ("org-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-                                             ("gnu-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+  (setq configuration-layer--elpa-archives '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+                                             ("org-cn" . "http://elpa.emacs-china.org/org/")
+                                             ("gnu-cn" . "http://elpa.emacs-china.org/gnu/")))
   )
 
 (defun dotspacemacs/user-config ()
