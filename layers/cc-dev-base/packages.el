@@ -12,11 +12,16 @@
 (defconst cc-dev-base-packages
   '(
     yasnippet-snippets
+    protobuf-mode
     ))
 
 (defun cc-dev-base/init-yasnippet-snippets ()
   (use-package yasnippet-snippets
-    :defer t)
-  )
+    :defer t))
+
+
+(defun cc-dev-base/init-protobuf-mode ()
+  (use-package protobuf-mode
+    :defer t))
 
 ;;; packages.el ends here
