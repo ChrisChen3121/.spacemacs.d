@@ -32,4 +32,5 @@
           ;; shell-protect-eshell-prompt nil
           shell-default-term-shell "zsh")
    shell-scripts
+   docker
    ))
