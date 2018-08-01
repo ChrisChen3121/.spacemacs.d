@@ -37,6 +37,7 @@
               (spacemacs/add-to-hooks 'irony-mode '(c-mode-hook c++-mode-hook))
               (add-hook 'irony-mode-hook #'irony-eldoc)
               (add-hook 'irony-mode-hook #'flycheck-irony-setup)
+              (add-hook 'irony-mode-hook #'irony-cdb-autosetup-compile-options)
               (which-key-add-key-based-replacements "C-c i" "irony")
               (define-key c-mode-base-map (kbd "C-c i u") 'irony-cdb-autosetup-compile-options)
               (define-key c-mode-base-map (kbd "C-c i j") 'irony-cdb-json-add-compile-commands-path)
