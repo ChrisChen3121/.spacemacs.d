@@ -85,6 +85,8 @@
   (spacemacs|use-package-add-hook projectile
     :post-config
     (dolist (mode '(c-mode c++-mode))
+      (add-to-list 'projectile-other-file-alist '("h" "cpp"))
+      (add-to-list 'projectile-other-file-alist '("cpp" "h"))
       (add-to-list 'projectile-other-file-alist '("h" "cc"))
       (add-to-list 'projectile-other-file-alist '("cc" "h")))))
 ;;; packages.el ends here
