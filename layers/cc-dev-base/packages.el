@@ -13,6 +13,7 @@
   '(
     yasnippet-snippets
     protobuf-mode
+    cheat-sh
     ))
 
 (defun cc-dev-base/init-yasnippet-snippets ()
@@ -22,6 +23,10 @@
 
 (defun cc-dev-base/init-protobuf-mode ()
   (use-package protobuf-mode
+    :defer t))
+
+(defun cc-dev-base/init-cheat-sh ()
+  (use-package cheat-sh
     :defer t))
 
 ;;; packages.el ends here
