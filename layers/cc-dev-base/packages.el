@@ -1,4 +1,4 @@
-;;; packages.el --- cc-dev-base layer packages file for Spacemacs.
+;; packages.el --- cc-dev-base layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2017 Sylvain Benner & Contributors
 ;;
@@ -27,6 +27,16 @@
 
 (defun cc-dev-base/init-cheat-sh ()
   (use-package cheat-sh
-    :defer t))
+    :config
+    (progn
+      (which-key-add-key-based-replacements
+        "C-c h" "cheat")
+      (global-set-key (kbd "C-c h c") 'cheat-sh)
+      (global-set-key (kbd "C-c h h") 'cheat-sh-help)
+      (global-set-key (kbd "C-c h s") 'cheat-sh-search)
+      (global-set-key (kbd "C-c h t") 'cheat-sh-search-topic)
+      (global-set-key (kbd "C-c h l") 'cheat-sh-list)
+      )
+    ))
 
 ;;; packages.el ends here

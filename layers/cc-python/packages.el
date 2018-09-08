@@ -55,9 +55,12 @@
         "C-c r" "anaconda")
       (define-key anaconda-mode-map (kbd "C-c r d") 'anaconda-mode-show-doc)
       (define-key anaconda-mode-map (kbd "C-c r b") 'anaconda-mode-go-back)
+      (define-key anaconda-mode-map (kbd "M-,") 'anaconda-mode-go-back)
       (define-key anaconda-mode-map (kbd "C-c r f") 'anaconda-mode-find-definitions)
+      (define-key anaconda-mode-map (kbd "M-.") 'anaconda-mode-find-definitions)
       (define-key anaconda-mode-map (kbd "C-c r r") 'anaconda-mode-find-references)
-      (define-key anaconda-mode-map (kbd "C-c r a")	'anaconda-mode-find-assignments))
+      (define-key anaconda-mode-map (kbd "C-c r a")	'anaconda-mode-find-assignments)
+      (define-key anaconda-mode-map (kbd "<backtab>")	'yapfify-buffer))
     ))
 
 ;; fix for company-anaconda-20180429
