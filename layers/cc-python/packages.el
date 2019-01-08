@@ -44,6 +44,11 @@
     (define-key python-mode-map (kbd "C-c C-c") 'python-shell-send-buffer-switch)
     ))
 
+(defun cc-python/post-init-python ()
+  (add-hook 'python-mode-hook
+            #'smartparens-mode
+            ))
+
 (defun cc-python/pre-init-anaconda-mode ()
   (use-package anaconda-mode
     :defer t
